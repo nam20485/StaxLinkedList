@@ -27,11 +27,11 @@ TEST(RandomTests, RandomOperationsProduceCorrectList) {
 		switch (std::rand() % 4)
 		{
 		case (int) Operation::AddFirst:
-			linkedList.addFirst(val);
+			linkedList.addFirst(std::move(val));
 			list.insert(list.begin(), val);
 			break;
 		case (int) Operation::AddLast:
-			linkedList.addLast(val);
+			linkedList.addLast(std::move(val));
 			list.push_back(val);
 			break;
 		case (int) Operation::RemoveFirst:

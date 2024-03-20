@@ -63,27 +63,15 @@ inline void LinkedList<TValue>::addLast(TValue val)
 }
 
 template<typename TValue>
-inline std::string LinkedList<TValue>::toString()
+inline TValue LinkedList<TValue>::removeFirst()
 {
-	std::stringstream ss;
-	
-	auto n = head;
-	while (n != nullptr)
-	{
-		ss << n->toString();
-		if (n->next != nullptr)
-		{
-			ss << "<->";
-		}
-		n = n->next;
-	}
+	return removeNode(head);
+}
 
-	ss << std::endl;
-
-
-
-
-	return ss.str();
+template<typename TValue>
+inline TValue LinkedList<TValue>::removeLast()
+{
+	return removeNode(tail);
 }
 
 template<typename TValue>
@@ -145,60 +133,6 @@ inline void LinkedList<TValue>::addBefore(Node* node, TValue val)
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::removeFirst()
-{
-	auto val = removeNode(head);
-
-	//auto val = head->data;
-	//auto temp = head;
-
-	//if (head->next != nullptr)
-	//{
-	//	head = head->next;
-	//	head->prev = nullptr;
-	//}
-	//else
-	//{
-	//	// head was the only node (size was 1)
-	//	head = nullptr;
-	//	tail = nullptr;
-	//}
-	//delete temp;
-	//count--;
-
-	return val;
-
-}
-
-template<typename TValue>
-inline TValue LinkedList<TValue>::removeLast()
-{
-	if (tail == nullptr) throw std::runtime_error("cannot remove from empty list");
-
-	auto val = removeNode(tail);	
-
-	//auto val = tail->data;
-	//auto temp = tail;
-
-	//if (tail->prev != nullptr)
-	//{
-	//	tail = tail->prev;
-	//	tail->next = nullptr;
-	//}
-	//else
-	//{
-	//	// tail was the only node (size was 1)
-	//	head = nullptr;
-	//	tail = nullptr;
-	//}
-
-	//delete temp;
-	//count--;
-
-	return val;
-}
-
-template<typename TValue>
 inline TValue LinkedList<TValue>::removeNode(Node* node)
 {
 	if (head == nullptr) throw std::runtime_error("cannot remove from empty list");
@@ -232,16 +166,39 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 }
 
 template<typename TValue>
+inline std::string LinkedList<TValue>::toString()
+{
+	std::stringstream ss;
+
+	auto n = head;
+	while (n != nullptr)
+	{
+		ss << n->toString();
+		if (n->next != nullptr)
+		{
+			ss << "<->";
+		}
+		n = n->next;
+	}
+
+	ss << std::endl;
+
+
+
+
+	return ss.str();
+}
+
+template<typename TValue>
 struct LinkedList<TValue>::Node
 {
 	Node(TValue val)
 		: next(nullptr)
 		, prev(nullptr)
-	{
-		data = val;
-	}
+		, data(val)
+	{}
 
-	TValue data;
+	TValue& data;
 	Node* next;
 	Node* prev;
 
