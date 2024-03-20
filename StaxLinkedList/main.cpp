@@ -21,7 +21,13 @@ int main()
     ll.addFirst(4);
     ll.addLast(5);
 
+    ll.removeFirst();
+    ll.removeFirst();
+    ll.removeFirst();
+    ll.removeLast();
+
     // 4 3 -1 0 1 2 5
+    // 012
 
     std::cout << ll.toString();
 

@@ -11,16 +11,24 @@ public:
 	LinkedList()
 		: head(nullptr)
 		, tail(nullptr)
+		, count(0)
 	{}
 
 	struct Node;
+
+	// O(1)
+	int getCount() const;
+	//Node* getHead() const	{ return head; }
+	//Node* getTail() const	{ return tail; }	
 
 	// O(1)
 	void addFirst(TValue val);
 	// O(1)
 	void addLast(TValue val);
 
+	// O(1)
 	TValue removeFirst();
+	// O(1)
 	TValue removeLast();
 
 	std::string toString();
@@ -32,62 +40,26 @@ private:
 
 	void addAfter(Node* node, TValue val);
 	void addBefore(Node* node, TValue val);
-	void removeNode(Node* node);
+	TValue removeNode(Node* node);
 
 };
+
+template<typename TValue>
+inline int LinkedList<TValue>::getCount() const
+{
+	return count;
+}
 
 template<typename TValue>
 inline void LinkedList<TValue>::addFirst(TValue val)
 {
 	addBefore(head, val);
-
-	//auto newNode = new Node(val);
-	//if (head != nullptr)
-	//{
-	//	newNode->next = head;
-	//	head->prev = newNode;		
-	//}
-	//else
-	//{
-	//	// empty list
-	//	tail = head;
-	//}
-	//head = newNode;
-	//count++;
 }
 
 template<typename TValue>
 inline void LinkedList<TValue>::addLast(TValue val)
-{	
-	//auto newNode = new Node(val);
-	//if (tail != nullptr)
-	//{
-	//	newNode->prev = tail;
-	//	tail->next = newNode;
-	//}
-	//else
-	//{
-	//	// empty list
-	//	head = newNode;
-	//}
-	//tail = newNode;
-	//count++;
+{		
 	addAfter(tail, val);
-}
-
-template<typename TValue>
-inline TValue LinkedList<TValue>::removeFirst()
-{
-	if (head == nullptr)
-	{
-
-	}
-}
-
-template<typename TValue>
-inline TValue LinkedList<TValue>::removeLast()
-{
-	return TValue();
 }
 
 template<typename TValue>
@@ -105,6 +77,10 @@ inline std::string LinkedList<TValue>::toString()
 		}
 		n = n->next;
 	}
+
+	ss << std::endl;
+
+
 
 
 	return ss.str();
@@ -169,15 +145,101 @@ inline void LinkedList<TValue>::addBefore(Node* node, TValue val)
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::removeNode(Node* node)
+inline TValue LinkedList<TValue>::removeFirst()
 {
-	return nullptr;
+	auto val = removeNode(head);
+
+	//auto val = head->data;
+	//auto temp = head;
+
+	//if (head->next != nullptr)
+	//{
+	//	head = head->next;
+	//	head->prev = nullptr;
+	//}
+	//else
+	//{
+	//	// head was the only node (size was 1)
+	//	head = nullptr;
+	//	tail = nullptr;
+	//}
+	//delete temp;
+	//count--;
+
+	return val;
+
+}
+
+template<typename TValue>
+inline TValue LinkedList<TValue>::removeLast()
+{
+	if (tail == nullptr) throw std::runtime_error("cannot remove from empty list");
+
+	auto val = removeNode(tail);	
+
+	//auto val = tail->data;
+	//auto temp = tail;
+
+	//if (tail->prev != nullptr)
+	//{
+	//	tail = tail->prev;
+	//	tail->next = nullptr;
+	//}
+	//else
+	//{
+	//	// tail was the only node (size was 1)
+	//	head = nullptr;
+	//	tail = nullptr;
+	//}
+
+	//delete temp;
+	//count--;
+
+	return val;
+}
+
+template<typename TValue>
+inline TValue LinkedList<TValue>::removeNode(Node* node)
+{
+	if (head == nullptr) throw std::runtime_error("cannot remove from empty list");
+
+	auto val = node->data;
+
+	if (node->next != nullptr)
+	{				
+		node->next->prev = node->prev;		
+	}
+	else
+	{
+		// removing the tail
+		tail = node->prev;
+	}
+
+	if (node->prev != nullptr)
+	{
+		node->prev->next = node->next;
+	}
+	else
+	{
+		// removing the head
+		head = node->next;
+	}
+
+	delete node;
+	count--;
+
+	return val;
 }
 
 template<typename TValue>
 struct LinkedList<TValue>::Node
 {
-	Node(TValue val);
+	Node(TValue val)
+		: next(nullptr)
+		, prev(nullptr)
+	{
+		data = val;
+	}
 
 	TValue data;
 	Node* next;
@@ -187,18 +249,9 @@ struct LinkedList<TValue>::Node
 };
 
 template<typename TValue>
-inline LinkedList<TValue>::Node::Node(TValue val)
-	: next(nullptr)
-	, prev(nullptr)
-{
-	data = val;
-}
-
-template<typename TValue>
 inline std::string LinkedList<TValue>::Node::toString()
 {
 	std::stringstream ss;
 	ss << '[' << data << ']';
 	return ss.str();
 }
-;
