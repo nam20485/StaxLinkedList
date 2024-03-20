@@ -9,14 +9,14 @@ enum class Operation
 	RemoveLast
 };
 
-TEST(TestCaseName, TestName) {
+TEST(RandomTests, RandomOperationsProduceCorrectList) {
 	EXPECT_EQ(1, 1);
 	EXPECT_TRUE(true);
 
 	LinkedList<int> linkedList;
 	std::vector<int> list;
 
-	int iterations = 100;
+	int iterations = 4e6;
 	int maxInt = 1000;
 
 	std::srand(std::time(0));
@@ -35,20 +35,33 @@ TEST(TestCaseName, TestName) {
 			list.push_back(val);
 			break;
 		case (int) Operation::RemoveFirst:
-			linkedList.removeFirst();
-			list.erase(list.begin());
+			if (linkedList.getCount() > 0)
+			{
+				linkedList.removeFirst();
+				list.erase(list.begin());
+			}
 			break;
 		case (int) Operation::RemoveLast:
-			linkedList.removeLast();
-			list.pop_back();
+			if (linkedList.getCount() > 0)
+			{
+				linkedList.removeLast();
+				list.pop_back();
+			}
 			break;
-		}
+		}		
+	}
 
-		// check if lists are the same
-		for (auto val : list)
-		{
-			auto llVal = linkedList.removeFirst();
-			ASSERT_EQ(llVal, val);
-		}
-	}	
+	// check if lists are the same
+	for (auto val : list)
+	{
+		auto llVal = linkedList.removeFirst();
+		ASSERT_EQ(llVal, val);		
+	}
+
+	ASSERT_EQ(linkedList.getCount(), 0);
+}
+
+TEST(LinkedListTests, TestAddFirst)
+{
+	
 }
