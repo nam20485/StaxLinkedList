@@ -2,7 +2,7 @@
 #include "LinkedList.h"
 #include "StaxAppData.h"
 
-TEST(LinkedListTests, TestAddFirstOnEmptyList)
+TEST(LinkedListTests, TestPushFrontOnEmptyList)
 {
 	StaxAppData::LinkedList ll;
 	
@@ -15,7 +15,7 @@ TEST(LinkedListTests, TestAddFirstOnEmptyList)
 	ASSERT_EQ(ll.front()->userId, data->userId);
 }
 
-TEST(LinkedListTests, TestAddLastOnEmptyList)
+TEST(LinkedListTests, TestPushBackOnEmptyList)
 {
 	StaxAppData::LinkedList ll;
 
@@ -28,7 +28,7 @@ TEST(LinkedListTests, TestAddLastOnEmptyList)
 	ASSERT_EQ(ll.front()->userId, data->userId);
 }
 
-TEST(LinkedListTests, TestAddFirstOnNonEmptyList)
+TEST(LinkedListTests, TestPushFrontOnNonEmptyList)
 {
 	StaxAppData::LinkedList ll;
 
@@ -43,7 +43,7 @@ TEST(LinkedListTests, TestAddFirstOnNonEmptyList)
 	ASSERT_EQ(ll.front()->userId, data2->userId);
 }
 
-TEST(LinkedListTests, TestAddLastOnNonEmptyList)
+TEST(LinkedListTests, TestPushBackOnNonEmptyList)
 {
 	StaxAppData::LinkedList ll;
 
@@ -58,7 +58,7 @@ TEST(LinkedListTests, TestAddLastOnNonEmptyList)
 	ASSERT_EQ(ll.back()->userId, data2->userId);
 }
 
-TEST(LinkedListTests, TestPeekFirst)
+TEST(LinkedListTests, TestFront)
 {
 	StaxAppData::LinkedList ll;
 
@@ -77,7 +77,7 @@ TEST(LinkedListTests, TestPeekFirst)
 	ASSERT_EQ(ll.front()->userId, data2->userId);
 }
 
-TEST(LinkedListTests, TestPeekLast)
+TEST(LinkedListTests, TestBack)
 {
 	StaxAppData::LinkedList ll;
 
@@ -96,7 +96,7 @@ TEST(LinkedListTests, TestPeekLast)
 	ASSERT_EQ(ll.back()->userId, data3->userId);
 }
 
-TEST(LinkedListTests, TestRemoveFirst)
+TEST(LinkedListTests, TestPopFront)
 {
 	StaxAppData::LinkedList ll;
 
@@ -124,7 +124,7 @@ TEST(LinkedListTests, TestRemoveFirst)
 	ASSERT_EQ(ll.size(), 0);
 }
 
-TEST(LinkedListTests, TestRemoveLast)
+TEST(LinkedListTests, TestPopBack)
 {
 	StaxAppData::LinkedList ll;
 
@@ -149,5 +149,28 @@ TEST(LinkedListTests, TestRemoveLast)
 
 	val = ll.pop_back();
 	ASSERT_EQ(val->userId, data2->userId);
+	ASSERT_EQ(ll.size(), 0);
+}
+
+TEST(LinkedListTests, TestSize)
+{
+	StaxAppData::LinkedList ll;
+
+	ASSERT_EQ(ll.size(), 0);
+
+	const int TOTAL = 1000;
+
+	for (int i = 0; i < TOTAL; i++)
+	{
+		ll.push_back(std::make_shared<StaxAppData>());
+		ASSERT_EQ(ll.size(), i + 1);
+	}
+
+	for (int i = TOTAL; i > 0; i--)
+	{
+		ll.pop_back();
+		ASSERT_EQ(ll.size(), i-1);
+	}
+	
 	ASSERT_EQ(ll.size(), 0);
 }
