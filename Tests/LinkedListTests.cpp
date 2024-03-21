@@ -2,85 +2,6 @@
 #include "LinkedList.h"
 #include "StaxAppData.h"
 
-enum class Operation
-{
-	AddFirst,
-	AddLast,
-	PeekFirst,
-	PeekLast,
-	RemoveFirst,
-	RemoveLast,
-};
-
-const int OPERATION_COUNT = 6;
-
-TEST(RandomTests, RandomOperationsProduceCorrectList) {
-	
-	LinkedList<int> linkedList;
-	std::vector<int> list;
-
-	auto iterations = static_cast<int>(4e6);	// 4,000,000
-	auto maxInt = 1000;
-
-	std::srand(static_cast<unsigned>(std::time(0)));
-
-	for (int i = 0; i < iterations; i++)
-	{
-		auto val = std::rand()%maxInt;
-		auto operation = static_cast<Operation>(std::rand() % OPERATION_COUNT);
-
-		switch (operation)
-		{
-		case Operation::AddFirst:
-			linkedList.addFirst(val);
-			list.insert(list.begin(), val);
-			break;
-		case Operation::AddLast:
-			linkedList.addLast(val);
-			list.push_back(val);
-			break;
-		case Operation::RemoveFirst:
-			if (linkedList.getCount() > 0)
-			{
-				linkedList.removeFirst();
-				list.erase(list.begin());
-			}
-			break;
-		case Operation::RemoveLast:
-			if (linkedList.getCount() > 0)
-			{
-				linkedList.removeLast();
-				list.pop_back();
-			}
-			break;
-		case Operation::PeekFirst:
-			if (linkedList.getCount() > 0)
-			{
-				auto val = linkedList.peekFirst();
-				ASSERT_EQ(val, list.front());
-			}
-			break;
-		case Operation::PeekLast:
-			if (linkedList.getCount() > 0)
-			{
-				auto val = linkedList.peekLast();
-				ASSERT_EQ(val, list.back());
-			}
-			break;
-		}		
-	}
-
-	// check if lists are the same
-	for (auto val : list)
-	{
-		auto llVal = linkedList.removeFirst();
-		ASSERT_EQ(llVal, val);		
-	}
-
-	// check if linked list is empty, i.e. it was the same size as the verification list
-	ASSERT_EQ(linkedList.getCount(), 0);
-}
-
 TEST(LinkedListTests, TestAddFirstOnEmptyList)
 {
 	StaxAppData::LinkedList ll;
@@ -91,7 +12,6 @@ TEST(LinkedListTests, TestAddFirstOnEmptyList)
 	ll.addFirst(data);
 
 	ASSERT_EQ(ll.getCount(), 1);
-
 	ASSERT_EQ(ll.peekFirst()->userId, data->userId);
 }
 
@@ -105,6 +25,129 @@ TEST(LinkedListTests, TestAddLastOnEmptyList)
 	ll.addLast(data);
 
 	ASSERT_EQ(ll.getCount(), 1);
-
 	ASSERT_EQ(ll.peekFirst()->userId, data->userId);
+}
+
+TEST(LinkedListTests, TestAddFirstOnNonEmptyList)
+{
+	StaxAppData::LinkedList ll;
+
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
+	ll.addFirst(data1);
+	auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
+	ll.addFirst(data2);
+
+	ASSERT_EQ(ll.getCount(), 2);
+	ASSERT_EQ(ll.peekFirst()->userId, data2->userId);
+}
+
+TEST(LinkedListTests, TestAddLastOnNonEmptyList)
+{
+	StaxAppData::LinkedList ll;
+
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
+	ll.addFirst(data1);
+	auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
+	ll.addLast(data2);
+
+	ASSERT_EQ(ll.getCount(), 2);
+	ASSERT_EQ(ll.peekLast()->userId, data2->userId);
+}
+
+TEST(LinkedListTests, TestPeekFirst)
+{
+	StaxAppData::LinkedList ll;
+
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
+	ll.addFirst(data1);
+	ASSERT_EQ(ll.peekFirst()->userId, data1->userId);
+
+	auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
+	ll.addFirst(data2);
+	ASSERT_EQ(ll.peekFirst()->userId, data2->userId);
+
+	auto data3 = std::make_shared<StaxAppData>("a", "b", "c", 3);
+	ll.addLast(data3);
+	ASSERT_EQ(ll.peekFirst()->userId, data2->userId);
+}
+
+TEST(LinkedListTests, TestPeekLast)
+{
+	StaxAppData::LinkedList ll;
+
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
+	ll.addFirst(data1);
+	ASSERT_EQ(ll.peekLast()->userId, data1->userId);
+
+	auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
+	ll.addFirst(data2);
+	ASSERT_EQ(ll.peekLast()->userId, data1->userId);
+
+	auto data3 = std::make_shared<StaxAppData>("a", "b", "c", 3);
+	ll.addLast(data3);
+	ASSERT_EQ(ll.peekLast()->userId, data3->userId);
+}
+
+TEST(LinkedListTests, TestRemoveFirst)
+{
+	StaxAppData::LinkedList ll;
+
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
+	ll.addFirst(data1);
+	ASSERT_EQ(ll.peekFirst()->userId, data1->userId);
+
+	auto val1 = ll.removeFirst();
+	ASSERT_EQ(val1->userId, data1->userId);
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
+	ll.addLast(data2);
+	auto data3 = std::make_shared<StaxAppData>("a", "b", "c", 3);
+	ll.addLast(data3);
+
+	auto val = ll.removeFirst();
+	ASSERT_EQ(val->userId, data2->userId);
+	ASSERT_EQ(ll.getCount(), 1);
+
+	val = ll.removeFirst();
+	ASSERT_EQ(val->userId, data3->userId);
+	ASSERT_EQ(ll.getCount(), 0);
+}
+
+TEST(LinkedListTests, TestRemoveLast)
+{
+	StaxAppData::LinkedList ll;
+
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
+	ll.addFirst(data1);
+	ASSERT_EQ(ll.peekFirst()->userId, data1->userId);
+
+	auto val1 = ll.removeLast();
+	ASSERT_EQ(val1->userId, data1->userId);
+	ASSERT_EQ(ll.getCount(), 0);
+
+	auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
+	ll.addLast(data2);
+	auto data3 = std::make_shared<StaxAppData>("a", "b", "c", 3);
+	ll.addLast(data3);
+
+	auto val = ll.removeLast();
+	ASSERT_EQ(val->userId, data3->userId);
+	ASSERT_EQ(ll.getCount(), 1);
+
+	val = ll.removeLast();
+	ASSERT_EQ(val->userId, data2->userId);
+	ASSERT_EQ(ll.getCount(), 0);
 }
