@@ -31,4 +31,9 @@ int main()
 
     std::cout << ll.toString();
 
+    StaxAppData::LinkedList staxAppDataLinkedList;
+
+    staxAppDataLinkedList.addFirst(std::make_shared<StaxAppData>("", "", "", -1));
+    std::cout << staxAppDataLinkedList.toString();
+
 }
