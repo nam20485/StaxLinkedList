@@ -27,6 +27,11 @@ public:
 	void addLast(TValue val);
 
 	// O(1)
+	TValue peekFirst();
+	// O(1)
+	TValue peekLast();
+
+	// O(1)
 	TValue removeFirst();
 	// O(1)
 	TValue removeLast();
@@ -42,6 +47,22 @@ private:
 	void addBefore(Node* node, TValue val);
 	TValue removeNode(Node* node);
 
+};
+
+template<typename TValue>
+struct LinkedList<TValue>::Node
+{
+	Node(TValue val)
+		: next(nullptr)
+		, prev(nullptr)
+		, data(val)
+	{}
+
+	TValue data;
+	Node* next;
+	Node* prev;
+
+	std::string toString();
 };
 
 template<typename TValue>
@@ -72,6 +93,20 @@ template<typename TValue>
 inline TValue LinkedList<TValue>::removeLast()
 {
 	return removeNode(tail);
+}
+
+template<typename TValue>
+inline TValue LinkedList<TValue>::peekFirst()
+{
+	if (head == nullptr) throw std::runtime_error("list is empty");
+	return head->data;
+}
+
+template<typename TValue>
+inline TValue LinkedList<TValue>::peekLast()
+{
+	if (tail == nullptr) throw std::runtime_error("list is empty");
+	return tail->data;
 }
 
 template<typename TValue>
@@ -188,22 +223,6 @@ inline std::string LinkedList<TValue>::toString()
 
 	return ss.str();
 }
-
-template<typename TValue>
-struct LinkedList<TValue>::Node
-{
-	Node(TValue val)
-		: next(nullptr)
-		, prev(nullptr)
-		, data(val)
-	{}
-
-	TValue& data;
-	Node* next;
-	Node* prev;
-
-	std::string toString();
-};
 
 template<typename TValue>
 inline std::string LinkedList<TValue>::Node::toString()
