@@ -8,11 +8,8 @@ template<typename TValue>
 class LinkedList
 {
 public:
-	LinkedList()
-		: head(nullptr)
-		, tail(nullptr)
-		, count(0)
-	{}
+	LinkedList();
+	~LinkedList();
 
 	struct Node;
 
@@ -46,6 +43,7 @@ private:
 	void addAfter(Node* node, TValue val);
 	void addBefore(Node* node, TValue val);
 	TValue removeNode(Node* node);
+	void free();
 
 };
 
@@ -64,6 +62,19 @@ struct LinkedList<TValue>::Node
 
 	std::string toString();
 };
+
+template<typename TValue>
+inline LinkedList<TValue>::LinkedList()
+	: head(nullptr)
+	, tail(nullptr)
+	, count(0)
+{}
+
+template<typename TValue>
+inline LinkedList<TValue>::~LinkedList()
+{
+	free();
+}
 
 template<typename TValue>
 inline int LinkedList<TValue>::getCount() const
@@ -201,6 +212,15 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 }
 
 template<typename TValue>
+inline void LinkedList<TValue>::free()
+{
+	while (tail != nullptr)
+	{
+		removeNode(tail);
+	}	
+}
+
+template<typename TValue>
 inline std::string LinkedList<TValue>::toString()
 {
 	std::stringstream ss;
@@ -218,8 +238,41 @@ inline std::string LinkedList<TValue>::toString()
 
 	ss << std::endl;
 
+	int headthNode = 0;
+	auto hn = head;
+	while (hn != nullptr)
+	{		
+		if (hn == head)
+		{
+			break;
+		}
+		headthNode++;
+		hn = hn->next;		
+	}
 
+	int tailthNode = 0;
+	auto tn = head;
+	while (tn != nullptr)
+	{		
+		if (tn == tail)
+		{
+			break;
+		}
+		tailthNode++;
+		tn = tn->next;		
+	}
 
+	if (headthNode > 0)
+	{
+		ss << std::string(headthNode*6, ' ');
+	}
+	ss << " h";
+
+	if (tailthNode > 0)
+	{
+		ss << std::string((tailthNode-headthNode) * 6, ' ');
+	}
+	ss << "t";
 
 	return ss.str();
 }
