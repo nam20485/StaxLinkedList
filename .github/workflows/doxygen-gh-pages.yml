@@ -31,13 +31,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Install Doxygen
+        run: apt install -y doxygen
+
+      - name: Generate Doxygen docs
+        working-directory: ./StaxLinkedList
+        run: doxygen doxygen.conf
+      
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload doxygen HTML output directory
+          path: './StaxLinkedList/docs/html'
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
