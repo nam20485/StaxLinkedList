@@ -32,38 +32,38 @@ TEST(RandomTests, RandomOperationsProduceCorrectList) {
 		switch (operation)
 		{
 		case Operation::AddFirst:
-			linkedList.addFirst(val);
+			linkedList.push_front(val);
 			list.insert(list.begin(), val);
 			break;
 		case Operation::AddLast:
-			linkedList.addLast(val);
+			linkedList.push_back(val);
 			list.push_back(val);
 			break;
 		case Operation::RemoveFirst:
-			if (linkedList.getCount() > 0)
+			if (linkedList.size() > 0)
 			{
-				linkedList.removeFirst();
+				linkedList.pop_front();
 				list.erase(list.begin());
 			}
 			break;
 		case Operation::RemoveLast:
-			if (linkedList.getCount() > 0)
+			if (linkedList.size() > 0)
 			{
-				linkedList.removeLast();
+				linkedList.pop_back();
 				list.pop_back();
 			}
 			break;
 		case Operation::PeekFirst:
-			if (linkedList.getCount() > 0)
+			if (linkedList.size() > 0)
 			{
-				auto val = linkedList.peekFirst();
+				auto val = linkedList.front();
 				ASSERT_EQ(val, list.front());
 			}
 			break;
 		case Operation::PeekLast:
-			if (linkedList.getCount() > 0)
+			if (linkedList.size() > 0)
 			{
-				auto val = linkedList.peekLast();
+				auto val = linkedList.back();
 				ASSERT_EQ(val, list.back());
 			}
 			break;
@@ -73,10 +73,10 @@ TEST(RandomTests, RandomOperationsProduceCorrectList) {
 	// check if lists are the same
 	for (auto val : list)
 	{
-		auto llVal = linkedList.removeFirst();
+		auto llVal = linkedList.pop_front();
 		ASSERT_EQ(llVal, val);
 	}
 
 	// check if linked list is empty, i.e. it was the same size as the verification list
-	ASSERT_EQ(linkedList.getCount(), 0);
+	ASSERT_EQ(linkedList.size(), 0);
 }

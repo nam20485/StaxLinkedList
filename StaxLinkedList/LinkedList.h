@@ -14,24 +14,24 @@ public:
 	struct Node;
 
 	// O(1)
-	int getCount() const;
+	int size() const;
 	//Node* getHead() const	{ return head; }
 	//Node* getTail() const	{ return tail; }	
 
 	// O(1)
-	void addFirst(TValue val);
+	void push_front(TValue val);
 	// O(1)
-	void addLast(TValue val);
+	void push_back(TValue val);
 
 	// O(1)
-	TValue peekFirst();
+	TValue front();
 	// O(1)
-	TValue peekLast();
+	TValue back();
 
 	// O(1)
-	TValue removeFirst();
+	TValue pop_front();
 	// O(1)
-	TValue removeLast();
+	TValue pop_back();
 
 	std::string toString();
 
@@ -77,44 +77,44 @@ inline LinkedList<TValue>::~LinkedList()
 }
 
 template<typename TValue>
-inline int LinkedList<TValue>::getCount() const
+inline int LinkedList<TValue>::size() const
 {
 	return count;
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::addFirst(TValue val)
+inline void LinkedList<TValue>::push_front(TValue val)
 {
 	addBefore(head, val);
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::addLast(TValue val)
+inline void LinkedList<TValue>::push_back(TValue val)
 {		
 	addAfter(tail, val);
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::removeFirst()
+inline TValue LinkedList<TValue>::pop_front()
 {
 	return removeNode(head);
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::removeLast()
+inline TValue LinkedList<TValue>::pop_back()
 {
 	return removeNode(tail);
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::peekFirst()
+inline TValue LinkedList<TValue>::front()
 {
 	if (head == nullptr) throw std::runtime_error("list is empty");
 	return head->data;
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::peekLast()
+inline TValue LinkedList<TValue>::back()
 {
 	if (tail == nullptr) throw std::runtime_error("list is empty");
 	return tail->data;

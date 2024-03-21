@@ -13,18 +13,18 @@ int main()
     //LinkedList<std::shared_ptr<StaxAppData>> ll;
     LinkedList<int> ll;
 
-    ll.addFirst(-1);
-    ll.addLast(0);
-    ll.addLast(1);
-    ll.addLast(2);
-    ll.addFirst(3);
-    ll.addFirst(4);
-    ll.addLast(5);
+    ll.push_front(-1);
+    ll.push_back(0);
+    ll.push_back(1);
+    ll.push_back(2);
+    ll.push_front(3);
+    ll.push_front(4);
+    ll.push_back(5);
 
-    ll.removeFirst();
-    ll.removeFirst();
-    ll.removeFirst();
-    ll.removeLast();
+    ll.pop_front();
+    ll.pop_front();
+    ll.pop_front();
+    ll.pop_back();
 
     // 4 3 -1 0 1 2 5
     // 012
@@ -33,7 +33,7 @@ int main()
 
     StaxAppData::LinkedList staxAppDataLinkedList;
 
-    staxAppDataLinkedList.addFirst(std::make_shared<StaxAppData>("", "", "", -1));
+    staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("", "", "", -1));
     std::cout << staxAppDataLinkedList.toString();
 
 }
