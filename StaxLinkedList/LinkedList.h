@@ -31,14 +31,8 @@ public:
 
 	// O(1)
 	TValue pop_front();	
-	TValue pop_back();
-
-	std::string toString() const;
-
-	//
-	// STL convention-compatible methods	
-	//
-	// These methods make this collection compatible with the STL functionality, such as std::equal(), <algorithms>, std::back_inserter, etc. 
+	TValue pop_back();	
+	
 	void clear();
 
 	iterator begin();
@@ -49,6 +43,8 @@ public:
 
 	//iterator cbegin();
 	//iterator cend();
+
+	std::string toString() const;
 
 private:
 	Node* head;
