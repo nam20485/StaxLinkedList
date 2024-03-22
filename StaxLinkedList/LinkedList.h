@@ -231,6 +231,8 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 	//node->next = nullptr;
 	//node->prev = nullptr;
 	delete node;
+	node = nullptr;
+
 	count--;
 
 	return val;
