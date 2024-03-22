@@ -15,25 +15,23 @@ public:
 
 	// O(1)
 	int size() const;
-	//Node* getHead() const	{ return head; }
-	//Node* getTail() const	{ return tail; }	
 
 	// O(1)
-	void push_front(TValue val);
-	// O(1)
+	void push_front(TValue val);	
 	void push_back(TValue val);
 
 	// O(1)
-	TValue front();
-	// O(1)
+	TValue front();	
 	TValue back();
 
 	// O(1)
-	TValue pop_front();
-	// O(1)
+	TValue pop_front();	
 	TValue pop_back();
 
 	std::string toString();
+
+	//Node* getHead() const	{ return head; }
+	//Node* getTail() const	{ return tail; }	
 
 private:
 	Node* head;
