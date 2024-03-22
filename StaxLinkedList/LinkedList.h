@@ -237,8 +237,7 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 template<typename TValue>
 inline void LinkedList<TValue>::clear()
 {
-	//// or while (!empty())
-	//while (tail != nullptr)
+	//while (!empty())
 	//{
 	//	removeNode(tail);
 	//}
