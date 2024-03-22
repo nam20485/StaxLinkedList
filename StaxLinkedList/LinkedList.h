@@ -2,6 +2,7 @@
 
 #include <string>
 #include <sstream>
+#include "LinkedListIterator.h"
 
 
 template<typename TValue>
@@ -13,22 +14,31 @@ public:
 
 	struct Node;
 
-	// O(1)
-	int size() const;
+	using Iterator = LinkedListIterator;
 
 	// O(1)
-	void push_front(TValue val);	
-	void push_back(TValue val);
+	std::size_t size() const;
+	bool empty() const;
 
 	// O(1)
-	TValue front();	
-	TValue back();
+	void push_front(const TValue& val);	
+	void push_back(const TValue& val);
+
+	// O(1)
+	TValue front() const;	
+	TValue back() const;
 
 	// O(1)
 	TValue pop_front();	
 	TValue pop_back();
 
-	std::string toString();
+	std::string toString() const;
+
+	//
+	// STL convention-compatible methods	
+	//
+	// These methods make this collection compatible with the STL functionality, such as std::equal(), <algorithms>, std::back_inserter, etc. 
+	void clear();
 
 	//Node* getHead() const	{ return head; }
 	//Node* getTail() const	{ return tail; }	
@@ -38,27 +48,35 @@ private:
 	Node* tail;
 	int count;
 
-	void addAfter(Node* node, TValue val);
-	void addBefore(Node* node, TValue val);
-	TValue removeNode(Node* node);
-	void free();
+	void addAfter(Node* node, const TValue& val);
+	void addBefore(Node* node, const TValue& val);
+	TValue removeNode(Node* node);	
 
 };
 
 template<typename TValue>
 struct LinkedList<TValue>::Node
 {
-	Node(TValue val)
+	Node(const TValue& val)
 		: next(nullptr)
 		, prev(nullptr)
 		, data(val)
 	{}
 
+	//~Node()
+	//{
+	//	if (next != nullptr)
+	//	{
+	//		delete next;
+	//		next = nullptr;
+	//	}
+	//}
+
 	TValue data;
 	Node* next;
 	Node* prev;
 
-	std::string toString();
+	std::string toString() const;
 };
 
 template<typename TValue>
@@ -71,23 +89,29 @@ inline LinkedList<TValue>::LinkedList()
 template<typename TValue>
 inline LinkedList<TValue>::~LinkedList()
 {
-	free();
+	clear();
 }
 
 template<typename TValue>
-inline int LinkedList<TValue>::size() const
+inline std::size_t LinkedList<TValue>::size() const
 {
 	return count;
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::push_front(TValue val)
+inline bool LinkedList<TValue>::empty() const
+{
+	return count == 0;
+}
+
+template<typename TValue>
+inline void LinkedList<TValue>::push_front(const TValue& val)
 {
 	addBefore(head, val);
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::push_back(TValue val)
+inline void LinkedList<TValue>::push_back(const TValue& val)
 {		
 	addAfter(tail, val);
 }
@@ -105,21 +129,21 @@ inline TValue LinkedList<TValue>::pop_back()
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::front()
+inline TValue LinkedList<TValue>::front() const
 {
 	if (head == nullptr) throw std::runtime_error("list is empty");
 	return head->data;
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::back()
+inline TValue LinkedList<TValue>::back() const
 {
 	if (tail == nullptr) throw std::runtime_error("list is empty");
 	return tail->data;
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::addAfter(Node* node, TValue val)
+inline void LinkedList<TValue>::addAfter(Node* node, const TValue& val)
 {
 	auto newNode = new Node(val);	
 	if (node != nullptr)
@@ -148,7 +172,7 @@ inline void LinkedList<TValue>::addAfter(Node* node, TValue val)
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::addBefore(Node* node, TValue val)
+inline void LinkedList<TValue>::addBefore(Node* node, const TValue& val)
 {
 	auto newNode = new Node(val);
 	if (node != nullptr)
@@ -203,23 +227,36 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 		head = node->next;
 	}
 
+	//// set next = nullptr so we don't delete the rest of the list after the node we are removing
+	//node->next = nullptr;
+	//node->prev = nullptr;
 	delete node;
+	node = nullptr;
+
 	count--;
 
 	return val;
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::free()
+inline void LinkedList<TValue>::clear()
 {
+	//// or while (!empty())
 	while (tail != nullptr)
 	{
 		removeNode(tail);
-	}	
+	}
+	//if (head != nullptr)
+	//{
+	//	delete head;
+	//	head = nullptr;
+	//}
+	//tail = nullptr;
+	//count = 0;
 }
 
 template<typename TValue>
-inline std::string LinkedList<TValue>::toString()
+inline std::string LinkedList<TValue>::toString() const
 {
 	std::stringstream ss;
 
@@ -276,7 +313,7 @@ inline std::string LinkedList<TValue>::toString()
 }
 
 template<typename TValue>
-inline std::string LinkedList<TValue>::Node::toString()
+inline std::string LinkedList<TValue>::Node::toString() const
 {
 	std::stringstream ss;
 	ss << '[' << data << ']';
