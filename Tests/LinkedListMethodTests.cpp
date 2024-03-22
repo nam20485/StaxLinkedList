@@ -5,63 +5,7 @@
 // place in namespace so that VS Test Explorer lists the namespace correctly
 namespace StaxLinkedListTests
 {
-	TEST(LinkedListTests, TestPushFrontOnEmptyList)
-	{
-		StaxAppData::LinkedList ll;
-
-		ASSERT_TRUE(ll.empty());
-
-		auto data = std::make_shared<StaxAppData>("a", "b", "c", 99);
-		ll.push_front(data);
-
-		ASSERT_EQ(ll.size(), 1);
-		ASSERT_EQ(ll.front()->userId, data->userId);
-	}
-
-	TEST(LinkedListTests, TestPushBackOnEmptyList)
-	{
-		StaxAppData::LinkedList ll;
-
-		ASSERT_TRUE(ll.empty());
-
-		auto data = std::make_shared<StaxAppData>("a", "b", "c", 99);
-		ll.push_back(data);
-
-		ASSERT_EQ(ll.size(), 1);
-		ASSERT_EQ(ll.front()->userId, data->userId);
-	}
-
-	TEST(LinkedListTests, TestPushFrontOnNonEmptyList)
-	{
-		StaxAppData::LinkedList ll;
-
-		ASSERT_TRUE(ll.empty());
-
-		auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
-		ll.push_front(data1);
-		auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
-		ll.push_front(data2);
-
-		ASSERT_EQ(ll.size(), 2);
-		ASSERT_EQ(ll.front()->userId, data2->userId);
-	}
-
-	TEST(LinkedListTests, TestPushBackOnNonEmptyList)
-	{
-		StaxAppData::LinkedList ll;
-
-		ASSERT_TRUE(ll.empty());
-
-		auto data1 = std::make_shared<StaxAppData>("a", "b", "c", 1);
-		ll.push_front(data1);
-		auto data2 = std::make_shared<StaxAppData>("a", "b", "c", 2);
-		ll.push_back(data2);
-
-		ASSERT_EQ(ll.size(), 2);
-		ASSERT_EQ(ll.back()->userId, data2->userId);
-	}
-
-	TEST(LinkedListTests, TestFront)
+	TEST(LinkedListMethodTests, TestFront)
 	{
 		StaxAppData::LinkedList ll;
 
@@ -80,7 +24,7 @@ namespace StaxLinkedListTests
 		ASSERT_EQ(ll.front()->userId, data2->userId);
 	}
 
-	TEST(LinkedListTests, TestBack)
+	TEST(LinkedListMethodTests, TestBack)
 	{
 		StaxAppData::LinkedList ll;
 
@@ -99,7 +43,7 @@ namespace StaxLinkedListTests
 		ASSERT_EQ(ll.back()->userId, data3->userId);
 	}
 
-	TEST(LinkedListTests, TestPopFront)
+	TEST(LinkedListMethodTests, TestPopFront)
 	{
 		StaxAppData::LinkedList ll;
 
@@ -127,7 +71,7 @@ namespace StaxLinkedListTests
 		ASSERT_TRUE(ll.empty());
 	}
 
-	TEST(LinkedListTests, TestPopBack)
+	TEST(LinkedListMethodTests, TestPopBack)
 	{
 		StaxAppData::LinkedList ll;
 
@@ -155,7 +99,7 @@ namespace StaxLinkedListTests
 		ASSERT_TRUE(ll.empty());
 	}
 
-	TEST(LinkedListTests, TestSize)
+	TEST(LinkedListMethodTests, TestSize)
 	{
 		StaxAppData::LinkedList ll;
 
@@ -178,7 +122,7 @@ namespace StaxLinkedListTests
 		ASSERT_EQ(ll.size(), 0);
 	}
 
-	TEST(LinkedListTests, TestEmpty)
+	TEST(LinkedListMethodTests, TestEmpty)
 	{
 		StaxAppData::LinkedList ll;
 
@@ -206,7 +150,7 @@ namespace StaxLinkedListTests
 		ASSERT_TRUE(ll.empty());
 	}
 
-	TEST(LinkedListTests, TestClear)
+	TEST(LinkedListMethodTests, TestClear)
 	{
 		StaxAppData::LinkedList ll;
 
@@ -216,29 +160,5 @@ namespace StaxLinkedListTests
 		ll.push_front(std::make_shared<StaxAppData>());
 		ll.clear();
 		ASSERT_TRUE(ll.empty());
-	}
-
-	TEST(LinkedListTests, TestReusingClearedList)
-	{
-		StaxAppData::LinkedList ll;
-
-		ASSERT_TRUE(ll.empty());
-
-		ll.push_back(std::make_shared<StaxAppData>());
-		ll.push_front(std::make_shared<StaxAppData>());
-		ll.clear();
-		ASSERT_TRUE(ll.empty());
-
-		ll.push_back(std::make_shared<StaxAppData>());
-		ll.push_back(std::make_shared<StaxAppData>());
-		ASSERT_EQ(ll.size(), 2);
-
-		ll.clear();
-		ASSERT_TRUE(ll.empty());
-	}
-
-	TEST(LinkedListTests, TestPopBackOnSingleNodeList)
-	{
-
 	}
 }
