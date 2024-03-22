@@ -14,7 +14,8 @@ public:
 	struct Node;
 
 	// O(1)
-	int size() const;
+	std::size_t size() const;
+	bool empty() const;
 
 	// O(1)
 	void push_front(TValue val);	
@@ -75,9 +76,15 @@ inline LinkedList<TValue>::~LinkedList()
 }
 
 template<typename TValue>
-inline int LinkedList<TValue>::size() const
+inline std::size_t LinkedList<TValue>::size() const
 {
 	return count;
+}
+
+template<typename TValue>
+inline bool LinkedList<TValue>::empty() const
+{
+	return count == 0;
 }
 
 template<typename TValue>
