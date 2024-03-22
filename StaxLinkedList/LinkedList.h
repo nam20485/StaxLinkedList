@@ -98,7 +98,7 @@ inline std::size_t LinkedList<TValue>::size() const
 template<typename TValue>
 inline bool LinkedList<TValue>::empty() const
 {
-	return count == 0;
+	return head == nullptr;
 }
 
 template<typename TValue>
