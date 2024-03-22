@@ -22,14 +22,20 @@ public:
 	void push_back(TValue val);
 
 	// O(1)
-	TValue front();	
-	TValue back();
+	TValue front() const;	
+	TValue back() const;
 
 	// O(1)
 	TValue pop_front();	
 	TValue pop_back();
 
-	std::string toString();
+	std::string toString() const;
+
+	//
+	// STL convention-compatible methods	
+	//
+	// These methods make this collection compatible with the STL functionality, such as std::equal(), <algorithms>, std::back_inserter, etc. 
+	void clear();
 
 	//Node* getHead() const	{ return head; }
 	//Node* getTail() const	{ return tail; }	
@@ -42,7 +48,6 @@ private:
 	void addAfter(Node* node, TValue val);
 	void addBefore(Node* node, TValue val);
 	TValue removeNode(Node* node);
-	void free();
 
 };
 
@@ -59,7 +64,7 @@ struct LinkedList<TValue>::Node
 	Node* next;
 	Node* prev;
 
-	std::string toString();
+	std::string toString() const;
 };
 
 template<typename TValue>
@@ -72,7 +77,7 @@ inline LinkedList<TValue>::LinkedList()
 template<typename TValue>
 inline LinkedList<TValue>::~LinkedList()
 {
-	free();
+	clear();
 }
 
 template<typename TValue>
@@ -112,14 +117,14 @@ inline TValue LinkedList<TValue>::pop_back()
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::front()
+inline TValue LinkedList<TValue>::front() const
 {
 	if (head == nullptr) throw std::runtime_error("list is empty");
 	return head->data;
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::back()
+inline TValue LinkedList<TValue>::back() const
 {
 	if (tail == nullptr) throw std::runtime_error("list is empty");
 	return tail->data;
@@ -217,7 +222,7 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::free()
+inline void LinkedList<TValue>::clear()
 {
 	while (tail != nullptr)
 	{
@@ -226,7 +231,7 @@ inline void LinkedList<TValue>::free()
 }
 
 template<typename TValue>
-inline std::string LinkedList<TValue>::toString()
+inline std::string LinkedList<TValue>::toString() const
 {
 	std::stringstream ss;
 
@@ -283,7 +288,7 @@ inline std::string LinkedList<TValue>::toString()
 }
 
 template<typename TValue>
-inline std::string LinkedList<TValue>::Node::toString()
+inline std::string LinkedList<TValue>::Node::toString() const
 {
 	std::stringstream ss;
 	ss << '[' << data << ']';
