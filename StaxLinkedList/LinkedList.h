@@ -21,8 +21,8 @@ public:
 	bool empty() const;
 
 	// O(1)
-	void push_front(TValue val);	
-	void push_back(TValue val);
+	void push_front(const TValue& val);	
+	void push_back(const TValue& val);
 
 	// O(1)
 	TValue front() const;	
@@ -48,16 +48,16 @@ private:
 	Node* tail;
 	int count;
 
-	void addAfter(Node* node, TValue val);
-	void addBefore(Node* node, TValue val);
-	TValue removeNode(Node* node);
+	void addAfter(Node* node, const TValue& val);
+	void addBefore(Node* node, const TValue& val);
+	TValue removeNode(Node* node);	
 
 };
 
 template<typename TValue>
 struct LinkedList<TValue>::Node
 {
-	Node(TValue val)
+	Node(const TValue& val)
 		: next(nullptr)
 		, prev(nullptr)
 		, data(val)
@@ -105,13 +105,13 @@ inline bool LinkedList<TValue>::empty() const
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::push_front(TValue val)
+inline void LinkedList<TValue>::push_front(const TValue& val)
 {
 	addBefore(head, val);
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::push_back(TValue val)
+inline void LinkedList<TValue>::push_back(const TValue& val)
 {		
 	addAfter(tail, val);
 }
@@ -143,7 +143,7 @@ inline TValue LinkedList<TValue>::back() const
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::addAfter(Node* node, TValue val)
+inline void LinkedList<TValue>::addAfter(Node* node, const TValue& val)
 {
 	auto newNode = new Node(val);	
 	if (node != nullptr)
@@ -172,7 +172,7 @@ inline void LinkedList<TValue>::addAfter(Node* node, TValue val)
 }
 
 template<typename TValue>
-inline void LinkedList<TValue>::addBefore(Node* node, TValue val)
+inline void LinkedList<TValue>::addBefore(Node* node, const TValue& val)
 {
 	auto newNode = new Node(val);
 	if (node != nullptr)
@@ -245,7 +245,7 @@ inline void LinkedList<TValue>::clear()
 	while (tail != nullptr)
 	{
 		removeNode(tail);
-	}	
+	}
 	//if (head != nullptr)
 	//{
 	//	delete head;
