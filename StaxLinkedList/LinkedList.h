@@ -13,7 +13,9 @@ public:
 	~LinkedList();
 
 	struct Node;
+
 	using iterator = LinkedListIterator<TValue>;
+	//using const_iterator = ConstLinkedListIterator<TValue>;
 
 	// O(1)
 	std::size_t size() const;
@@ -42,8 +44,11 @@ public:
 	iterator begin();
 	iterator end();
 
-	//Node* getHead() const	{ return head; }
-	//Node* getTail() const	{ return tail; }	
+	//iterator rbegin();
+	//iterator rend();
+
+	//iterator cbegin();
+	//iterator cend();
 
 private:
 	Node* head;
@@ -260,6 +265,30 @@ inline LinkedList<TValue>::iterator LinkedList<TValue>::end()
 {
 	return iterator(nullptr);
 }
+
+//template<typename TValue>
+//inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin()
+//{
+//	return reverse_iterator(tail);
+//}
+//
+//template<typename TValue>
+//inline LinkedList<TValue>::iterator LinkedList<TValue>::rend()
+//{
+//	return reverse_iterator(nullptr);
+//}
+
+//template<typename TValue>
+//inline LinkedList<TValue>::iterator LinkedList<TValue>::cbegin()
+//{
+//	return const_iterator(head);
+//}
+//
+//template<typename TValue>
+//inline LinkedList<TValue>::iterator LinkedList<TValue>::cend()
+//{
+//	return const_iterator(nullptr);
+//}
 
 template<typename TValue>
 inline std::string LinkedList<TValue>::toString() const
