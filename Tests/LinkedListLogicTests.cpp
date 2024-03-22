@@ -94,7 +94,6 @@ namespace StaxLinkedListTests
 		ASSERT_TRUE(ll.empty());
 	}
 
-
 	TEST(LinkedListLogicTests, TestPopFrontOnSingleNodeList)
 	{
 		StaxAppData::LinkedList ll;
