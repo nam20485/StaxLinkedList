@@ -13,8 +13,7 @@ public:
 	~LinkedList();
 
 	struct Node;
-
-	using Iterator = LinkedListIterator;
+	using iterator = LinkedListIterator<TValue>;
 
 	// O(1)
 	std::size_t size() const;
@@ -39,6 +38,9 @@ public:
 	//
 	// These methods make this collection compatible with the STL functionality, such as std::equal(), <algorithms>, std::back_inserter, etc. 
 	void clear();
+
+	iterator begin();
+	iterator end();
 
 	//Node* getHead() const	{ return head; }
 	//Node* getTail() const	{ return tail; }	
@@ -227,7 +229,7 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 	//// set next = nullptr so we don't delete the rest of the list after the node we are removing
 	node->next = nullptr;
 	node->prev = nullptr;
-	delete node;
+	delete node;	
 
 	count--;
 
@@ -245,6 +247,18 @@ inline void LinkedList<TValue>::clear()
 	head = nullptr;	
 	tail = nullptr;
 	count = 0;
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::begin()
+{
+	return iterator(head);
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::end()
+{
+	return iterator(nullptr);
 }
 
 template<typename TValue>

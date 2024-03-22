@@ -21,19 +21,24 @@ int main()
     ll.push_front(4);
     ll.push_back(5);
 
-    ll.pop_front();
-    ll.pop_front();
-    ll.pop_front();
-    ll.pop_back();
+    //ll.pop_front();
+    //ll.pop_front();
+    //ll.pop_front();
+    //ll.pop_back();
 
     // 4 3 -1 0 1 2 5
     // 012
 
-    std::cout << ll.toString();
+    std::cout << ll.toString() << std::endl;
 
-    StaxAppData::LinkedList staxAppDataLinkedList;
+    for (auto val : ll)
+    {
+        std::cout << val;
+    }
 
-    staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("", "", "", -1));
-    std::cout << staxAppDataLinkedList.toString();
+    //StaxAppData::LinkedList staxAppDataLinkedList;
+
+    //staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("", "", "", -1));
+    //std::cout << staxAppDataLinkedList.toString();
 
 }
