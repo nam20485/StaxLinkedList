@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 /StaxLinkedList/api-docs
 /StaxLinkedList/docs/
+/docs/html
