@@ -63,6 +63,15 @@ struct LinkedList<TValue>::Node
 		, data(val)
 	{}
 
+	//~Node()
+	//{
+	//	if (next != nullptr)
+	//	{
+	//		delete next;
+	//		next = nullptr;
+	//	}
+	//}
+
 	TValue data;
 	Node* next;
 	Node* prev;
@@ -218,6 +227,9 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 		head = node->next;
 	}
 
+	//// set next = nullptr so we don't delete the rest of the list after the node we are removing
+	//node->next = nullptr;
+	//node->prev = nullptr;
 	delete node;
 	count--;
 
@@ -227,10 +239,18 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 template<typename TValue>
 inline void LinkedList<TValue>::clear()
 {
+	//// or while (!empty())
 	while (tail != nullptr)
 	{
 		removeNode(tail);
 	}	
+	//if (head != nullptr)
+	//{
+	//	delete head;
+	//	head = nullptr;
+	//}
+	//tail = nullptr;
+	//count = 0;
 }
 
 template<typename TValue>
