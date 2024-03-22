@@ -2,6 +2,7 @@
 
 #include <string>
 #include <sstream>
+#include "LinkedListIterator.h"
 
 
 template<typename TValue>
@@ -12,6 +13,8 @@ public:
 	~LinkedList();
 
 	struct Node;
+
+	using Iterator = LinkedListIterator;
 
 	// O(1)
 	std::size_t size() const;
