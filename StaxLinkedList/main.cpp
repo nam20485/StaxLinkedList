@@ -36,9 +36,19 @@ int main()
         std::cout << val;
     }
 
-    //StaxAppData::LinkedList staxAppDataLinkedList;
+    std::cout << std::endl;
 
-    //staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("", "", "", -1));
-    //std::cout << staxAppDataLinkedList.toString();
+    for (auto it = ll.rbegin(); it != ll.rend(); --it)
+    {
+        auto v = *it;
+        std::cout << v;
+    }
+
+    std::cout << std::endl;
+
+    StaxAppData::LinkedList staxAppDataLinkedList;
+
+    staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("", "", "", -1));
+    std::cout << staxAppDataLinkedList.toString();
 
 }
