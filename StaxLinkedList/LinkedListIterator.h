@@ -19,6 +19,10 @@ public:
 		: LinkedListIterator(nullptr)
 	{}
 
+	LinkedListIterator(LinkedList<TValue>::Node* current)
+		:current(current)
+	{}
+
 	reference operator*();	
 	const LinkedListIterator<TValue>& operator++();
 	const LinkedListIterator<TValue>& operator--();
@@ -28,11 +32,6 @@ public:
 protected:
 	LinkedList<TValue>::Node* current;
 
-	LinkedListIterator(LinkedList<TValue>::Node* current)
-		:current(current)
-	{}
-
-	friend class LinkedList<TValue>;
 };
 
 template<typename TValue>

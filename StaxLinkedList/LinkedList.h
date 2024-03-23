@@ -21,8 +21,10 @@ public:
 	LinkedList();
 	~LinkedList();
 
+	struct Node;
+
 	using iterator = LinkedListIterator<TValue>;
-	friend class LinkedListIterator<TValue>;
+	//friend class LinkedListIterator<TValue>;
 	//using const_iterator = ConstLinkedListIterator<TValue>;
 
 	/**
@@ -118,9 +120,7 @@ public:
 	**/
 	std::string toString() const;
 
-private:
-	struct Node;
-
+private:	
 	Node* head;
 	Node* tail;
 
