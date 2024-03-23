@@ -38,11 +38,11 @@ public:
 	iterator begin();
 	iterator end();
 
-	//iterator rbegin();
-	//iterator rend();
+	iterator rbegin();
+	iterator rend();
 
-	//iterator cbegin();
-	//iterator cend();
+	//const_iterator cbegin() const;
+	//const_iterator cend() const;
 
 	std::string toString() const;
 
@@ -262,26 +262,26 @@ inline LinkedList<TValue>::iterator LinkedList<TValue>::end()
 	return iterator(nullptr);
 }
 
-//template<typename TValue>
-//inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin()
-//{
-//	return reverse_iterator(tail);
-//}
-//
-//template<typename TValue>
-//inline LinkedList<TValue>::iterator LinkedList<TValue>::rend()
-//{
-//	return reverse_iterator(nullptr);
-//}
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin()
+{
+	return iterator(tail);
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::rend()
+{
+	return iterator(nullptr);
+}
 
 //template<typename TValue>
-//inline LinkedList<TValue>::iterator LinkedList<TValue>::cbegin()
+//inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cbegin() const
 //{
 //	return const_iterator(head);
 //}
 //
 //template<typename TValue>
-//inline LinkedList<TValue>::iterator LinkedList<TValue>::cend()
+//inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cend() const
 //{
 //	return const_iterator(nullptr);
 //}
