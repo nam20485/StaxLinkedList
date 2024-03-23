@@ -13,14 +13,17 @@ public:
 	using value_type = typename std::remove_cv<TValue>::type;
 	using difference_type = std::ptrdiff_t;
 	using pointer = TValue*;
-	using reference = TValue&;
+	using reference = TValue&;	
 
 	LinkedListIterator(LinkedList<TValue>::Node* current)
 		:current(current)
 	{}
 
-	reference operator*();
-	//pointer operator->();
+	LinkedListIterator()
+		: LinkedListIterator(nullptr)
+	{}
+
+	reference operator*();	
 	const LinkedListIterator<TValue>& operator++();
 	const LinkedListIterator<TValue>& operator--();
 	bool operator==(const LinkedListIterator<TValue>& other);
@@ -36,12 +39,6 @@ inline LinkedListIterator<TValue>::reference LinkedListIterator<TValue>::operato
 {
 	return this->current->data;
 }
-
-//template<typename TValue>
-//inline LinkedListIterator<TValue>::pointer LinkedListIterator<TValue>::operator->()
-//{
-//	return this->current;
-//}
 
 template<typename TValue>
 inline const LinkedListIterator<TValue>& LinkedListIterator<TValue>::operator++()
@@ -61,20 +58,20 @@ template<typename TValue>
 inline bool LinkedListIterator<TValue>::operator==(const LinkedListIterator<TValue>& other)
 {
 	//return other.current != nullptr && this->current == other.current;
-	return this->current == other.current;
+	return current == other.current;
 }
 
 template<typename TValue>
 inline bool LinkedListIterator<TValue>::operator!=(const LinkedListIterator<TValue>& other)
 {
-	return this->current != other.current;
+	return current != other.current;
 }
 
 //template<typename TValue>
 //class ConstLinkedListIterator : public LinkedListIterator<TValue>
 //{
 //public:
-//	ConstLinkedListIterator(TValue* current)
+//	ConstLinkedListIterator(LinkedList<TValue>::Node* current)
 //		: LinkedListIterator<TValue>(current)
 //	{}
 //	
