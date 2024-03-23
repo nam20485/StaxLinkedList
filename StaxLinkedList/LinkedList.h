@@ -14,7 +14,8 @@ public:
 
 	struct Node;
 
-	using Iterator = LinkedListIterator;
+	using iterator = LinkedListIterator<TValue>;
+	//using const_iterator = ConstLinkedListIterator<TValue>;
 
 	// O(1)
 	std::size_t size() const;
@@ -30,18 +31,20 @@ public:
 
 	// O(1)
 	TValue pop_front();	
-	TValue pop_back();
-
-	std::string toString() const;
-
-	//
-	// STL convention-compatible methods	
-	//
-	// These methods make this collection compatible with the STL functionality, such as std::equal(), <algorithms>, std::back_inserter, etc. 
+	TValue pop_back();	
+	
 	void clear();
 
-	//Node* getHead() const	{ return head; }
-	//Node* getTail() const	{ return tail; }	
+	iterator begin();
+	iterator end();
+
+	iterator rbegin();
+	iterator rend();
+
+	//const_iterator cbegin() const;
+	//const_iterator cend() const;
+
+	std::string toString() const;
 
 private:
 	Node* head;
@@ -63,14 +66,11 @@ struct LinkedList<TValue>::Node
 		, data(val)
 	{}
 
-	//~Node()
-	//{
-	//	if (next != nullptr)
-	//	{
-	//		delete next;
-	//		next = nullptr;
-	//	}
-	//}
+	~Node()
+	{
+		delete next;
+		next = nullptr;
+	}
 
 	TValue data;
 	Node* next;
@@ -101,7 +101,7 @@ inline std::size_t LinkedList<TValue>::size() const
 template<typename TValue>
 inline bool LinkedList<TValue>::empty() const
 {
-	return count == 0;
+	return head == nullptr;
 }
 
 template<typename TValue>
@@ -228,10 +228,9 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 	}
 
 	//// set next = nullptr so we don't delete the rest of the list after the node we are removing
-	//node->next = nullptr;
-	//node->prev = nullptr;
-	delete node;
-	node = nullptr;
+	node->next = nullptr;
+	node->prev = nullptr;
+	delete node;	
 
 	count--;
 
@@ -241,19 +240,51 @@ inline TValue LinkedList<TValue>::removeNode(Node* node)
 template<typename TValue>
 inline void LinkedList<TValue>::clear()
 {
-	//// or while (!empty())
-	while (tail != nullptr)
-	{
-		removeNode(tail);
-	}
-	//if (head != nullptr)
+	//while (!empty())
 	//{
-	//	delete head;
-	//	head = nullptr;
+	//	removeNode(tail);
 	//}
-	//tail = nullptr;
-	//count = 0;
+	delete head;
+	head = nullptr;	
+	tail = nullptr;
+	count = 0;
 }
+
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::begin()
+{
+	return iterator(head);
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::end()
+{
+	return iterator(nullptr);
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin()
+{
+	return iterator(tail);
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::iterator LinkedList<TValue>::rend()
+{
+	return iterator(nullptr);
+}
+
+//template<typename TValue>
+//inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cbegin() const
+//{
+//	return const_iterator(head);
+//}
+//
+//template<typename TValue>
+//inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cend() const
+//{
+//	return const_iterator(nullptr);
+//}
 
 template<typename TValue>
 inline std::string LinkedList<TValue>::toString() const

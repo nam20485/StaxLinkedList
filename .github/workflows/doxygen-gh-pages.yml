@@ -36,14 +36,18 @@ jobs:
         run: sudo apt install -y doxygen
 
       - name: Generate Doxygen docs
-        run: doxygen ./StaxLinkedList/doxygen.conf
+        run: doxygen ./StaxLinkedList/doxygen.conf     
 
-      - name: Fix permissions
-        # https://github.com/actions/upload-pages-artifact/tree/56afc609e74202658d3ffba0e8f6dda462b719fa/?tab=readme-ov-file#example-permissions-fix-for-linux
-        run: |
-          chmod -c -R +rX "StaxLinkedList/docs/" | while read line; do
-            echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
+      - name: Create .nojekyll
+        # https://github.com/marketplace/actions/doxygen-github-pages-deploy-action#4-create-nojekyll
+        run: touch ./docs/html/.nojekyll
+
+      # - name: Fix permissions
+      #   # https://github.com/actions/upload-pages-artifact/tree/56afc609e74202658d3ffba0e8f6dda462b719fa/?tab=readme-ov-file#example-permissions-fix-for-linux
+      #   run: |
+      #     chmod -c -R +rX "StaxLinkedList/docs/" | while read line; do
+      #       echo "::warning title=Invalid file permissions automatically fixed::$line"
+      #     done
       
       - name: Setup Pages
         uses: actions/configure-pages@v4
