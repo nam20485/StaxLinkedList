@@ -21,9 +21,8 @@ public:
 	LinkedList();
 	~LinkedList();
 
-	struct Node;
-
 	using iterator = LinkedListIterator<TValue>;
+	friend class LinkedListIterator<TValue>;
 	//using const_iterator = ConstLinkedListIterator<TValue>;
 
 	/**
@@ -66,7 +65,7 @@ public:
 		@exception std::runtime_error if list is empty
 		@retval TValue value at the beginning of the list
 	**/
-	TValue front() const;	
+	TValue front() const;
 
 	/**
 		@brief  Return the value at the end of the list, without removing it from the list
@@ -120,8 +119,11 @@ public:
 	std::string toString() const;
 
 private:
+	struct Node;
+
 	Node* head;
 	Node* tail;
+
 	int count;
 
 	// Add the specified value AFTER the given node
@@ -154,6 +156,7 @@ struct LinkedList<TValue>::Node
 		next = nullptr;
 	}
 
+public:
 	TValue data;
 	Node* next;
 	Node* prev;

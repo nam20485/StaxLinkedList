@@ -15,10 +15,6 @@ public:
 	using pointer = TValue*;
 	using reference = TValue&;	
 
-	LinkedListIterator(LinkedList<TValue>::Node* current)
-		:current(current)
-	{}
-
 	LinkedListIterator()
 		: LinkedListIterator(nullptr)
 	{}
@@ -32,12 +28,17 @@ public:
 protected:
 	LinkedList<TValue>::Node* current;
 
+	LinkedListIterator(LinkedList<TValue>::Node* current)
+		:current(current)
+	{}
+
+	friend class LinkedList<TValue>;
 };
 
 template<typename TValue>
 inline LinkedListIterator<TValue>::reference LinkedListIterator<TValue>::operator*()
 {
-	return this->current->data;
+	return current->data;
 }
 
 template<typename TValue>
