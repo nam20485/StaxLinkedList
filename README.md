@@ -7,6 +7,15 @@ Doubly-linked list created for the Stax application. The API is designed using t
 
 >The `StaxApplicationData` struct is an example of an application data object that can be used with the LinkedList class. A specialization of the LinkedList\<TValue\> template for the StaxApplicationData struct is also provided in StaxAppData.h, named the `StaxAppData::LinkedList` type.
 
+## Code
+
+The majority of the LinkedList code can be found in `LinkedList.h`. The `main.cpp` file contains examples of usage of the LinkedList class. Test cases can be found in the `Tests` project's files.
+
+* [LinkedList.h](StaxLinkedList/LinkedList.h)
+* [main.cpp](StaxLinkedList/main.cpp)
+* [LinkedListIterator.h](StaxLinkedList/LinkedListIterator.h)
+* [StaxApplicationData.h](StaxLinkedList/StaxAppData.cpp)
+
 ## API Documentation
 
 API documentation created with Doxygen can be viewed here:
@@ -28,15 +37,6 @@ Test Case Files:
 * [Random Operations Test](Tests/RandomOperationsTests.cpp)
 
 Test results can be seen here: **insert test results link**
-
-## Code
-
-The majority of the LinkedList code can be found in LinkedList.h. The main.cpp file contains examples of usage of the LinkedList class. Test cases can be found in the Tests project's files.
-
-* [LinkedList.h](StaxLinkedList/LinkedList.h)
-* [main.cpp](StaxLinkedList/main.cpp)
-* [LinkedListIterator.h](StaxLinkedList/LinkedListIterator.h)
-* [StaxApplicationData.h](StaxLinkedList/StaxAppData.cpp)
 
 ## Build
 
