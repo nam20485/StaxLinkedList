@@ -28,7 +28,7 @@ API documentation created with Doxygen can be viewed here:
 
 Test cases can be found in the `Tests` project. The tests are written using the Google Test (GTest) testing framework. Automated tests run on every commit as part of the CI/CD pipeline.
 
->The random operations test are designed to stress test the LinkedList class, running 4,000,000 random operations on a linked list instance and then comparing the results to a `std::vector` that has had the same operations performed on it. The test checks that the linked list and vector have the same size and that the elements in the linked list are in the same order as the vector.
+>The random operations test is designed to stress test the LinkedList class, running 4,000,000 random operations on a linked list instance and then comparing the results to a `std::vector` that has had the same operations performed on it. The test checks that the linked list and vector have the same size and that the elements in the linked list are in the same order as the vector.
 
 Test Case Files:
 
@@ -36,7 +36,7 @@ Test Case Files:
 * [Method Tests](Tests/LinkedListMethodTests.cpp)
 * [Random Operations Test](Tests/RandomOperationsTests.cpp)
 
-Test results can be seen here: **insert test results link**
+[Test results can be seen here.](https://github.com/nam20485/StaxLinkedList/actions/runs/8412559181/job/23033557118)
 
 ## Build
 
