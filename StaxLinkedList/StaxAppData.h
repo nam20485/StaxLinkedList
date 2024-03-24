@@ -4,6 +4,10 @@
 #include "LinkedList.h"
 #include <memory>
 
+/**
+    @struct StaxAppData
+    @brief  Example application data structure for use with the LinkedList<TValue> class
+**/
 struct StaxAppData
 {
 	std::string apiUrl;
