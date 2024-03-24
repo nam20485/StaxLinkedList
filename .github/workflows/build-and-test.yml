@@ -45,6 +45,20 @@ jobs:
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
 
     - name: Run Tests
-      run: ./x64/Release/Tests.exe
-        
-        
+      id: run-tests
+      run: ./x64/Release/Tests.exe --gtest_output=xml:${{github.workspace}}/test_results.xml
+      continue-on-error: true
+
+    # report test results
+    - name: Report Test Results
+      uses: dorny/test-reporter@eaa763f6ffc21c7a37837f56cd5f9737f27fc6c8 # v1.8.0
+      if: steps.run-tests.outcome == 'success' || steps.run-tests.outcome == 'failure'
+      with:
+        name: test-results
+        path: ${{github.workspace}}/test_results.xml
+        reporter: java-junit
+        path-replace-backslashes: true
+        # fail job based on report results
+        fail-on-error: true
+   
+
