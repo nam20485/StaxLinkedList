@@ -1,5 +1,5 @@
-[![Deploy API Documentation](https://github.com/nam20485/StaxLinkedList/actions/workflows/doxygen-gh-pages.yml/badge.svg)](https://github.com/nam20485/StaxLinkedList/actions/workflows/doxygen-gh-pages.yml)
 [![Build and Test](https://github.com/nam20485/StaxLinkedList/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/nam20485/StaxLinkedList/actions/workflows/build-and-test.yml)
+[![Deploy API Documentation](https://github.com/nam20485/StaxLinkedList/actions/workflows/doxygen-gh-pages.yml/badge.svg)](https://github.com/nam20485/StaxLinkedList/actions/workflows/doxygen-gh-pages.yml)
 
 # StaxLinkedList
 
