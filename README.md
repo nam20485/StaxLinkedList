@@ -1,3 +1,6 @@
+[![Deploy API Documentation](https://github.com/nam20485/StaxLinkedList/actions/workflows/doxygen-gh-pages.yml/badge.svg)](https://github.com/nam20485/StaxLinkedList/actions/workflows/doxygen-gh-pages.yml)
+[![Build and Test](https://github.com/nam20485/StaxLinkedList/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/nam20485/StaxLinkedList/actions/workflows/build-and-test.yml)
+
 # StaxLinkedList
 
 Doubly-linked list created for the Stax application. The API is designed using the conventions of the STL containers, and an STL-like iterator class is provided. This means that the LinkedList class can be used with the `range-based for loop` and other standard methods in the STL `<alogorithms>` header, such as `std::find`, `std::for_each`, etc. It is designed as a class template so it can be used with any type of data.
