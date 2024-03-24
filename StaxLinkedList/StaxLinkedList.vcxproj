@@ -138,6 +138,7 @@
     <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="LinkedListIterator.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="StaxAppData.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LinkedList.h" />
