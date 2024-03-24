@@ -31,8 +31,17 @@ jobs:
       actions: read
       checks: write
 
-    steps:
-    - uses: actions/checkout@v3
+    steps:  
+    - name: Harden Runner
+      uses: step-security/harden-runner@63c24ba6bd7ba022e95695ff85de572c04a18142 # v2.7.0
+      with:
+        egress-policy: audit
+
+    - name: Checkout Repository
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        
+    - name: Add Problem Matchers
+      uses: ammaraskar/msvc-problem-matcher@1ebcb382869bfdc2cc645e8a2a43b6d319ea1cc0 # master
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
