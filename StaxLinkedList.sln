@@ -8,6 +8,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests", "Tests\Tests.vcxproj", "{91D7578A-0FBB-47FA-BDE1-691505F5E59D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{75E4A05F-1C30-46D0-80DD-53844BE717F0}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GH Workflows", "GH Workflows", "{22628C4F-07FA-4AFD-AE83-CB5C11142050}"
 	ProjectSection(SolutionItems) = preProject
