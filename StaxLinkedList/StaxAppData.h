@@ -15,6 +15,11 @@ struct StaxAppData
 	std::string dbConnectionString;
 	long userId;
 
-	// linked list of StaxAppData
+	// LinkedList of StaxAppData
 	using LinkedList = LinkedList<std::shared_ptr<StaxAppData>>;
+
+	std::string toString() const;	
 };
+
+//std::ostream& operator<< (std::ostream& stream, const StaxAppData& appData);
+//std::ostream& operator<< (std::ostream& stream, const std::shared_ptr<StaxAppData>& pAppData);
