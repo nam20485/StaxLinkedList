@@ -36,7 +36,7 @@ Test Case Files:
 * [Method Tests](Tests/LinkedListMethodTests.cpp)
 * [Random Operations Test](Tests/RandomOperationsTests.cpp)
 
-Test results can be seen here: **insert test results link**
+[Test results can be seen here.](https://github.com/nam20485/StaxLinkedList/actions/runs/8412559181/job/23033557118)
 
 ## Build
 
