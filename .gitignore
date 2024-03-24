@@ -399,3 +399,5 @@ FodyWeavers.xsd
 /StaxLinkedList/api-docs
 /StaxLinkedList/docs/
 /docs/html
+test_results.json
+test_results.xml
