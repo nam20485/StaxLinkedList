@@ -4,8 +4,18 @@
 
 template<typename TValue> class LinkedList;
 
+/**
+
+    @class   LinkedListIterator
+    @brief   Allows iterating an instance of LinkedList<TValue>
+    @details ~ Designed in the style of the STL container iterators. 
+			   Allows compatibility and use with the range-based for loop and all of the STL algorithms, e.g. std::find, std::for_each, and others in <algorithms>, etc.
+			   Use LinkedList<TValue>::iterator member for instantiating this class.
+    @tparam  TValue - type of value of the list that the iterator will be used for
+
+**/
 template<typename TValue>
-class LinkedListIterator// : public std::iterator<std::, TValue>
+class LinkedListIterator
 {
 public:
 
@@ -15,18 +25,52 @@ public:
 	using pointer = TValue*;
 	using reference = TValue&;	
 
-	LinkedListIterator(LinkedList<TValue>::Node* current)
-		:current(current)
-	{}
-
+	/**
+		@brief Create a LinkedListIterator pointing to no position
+	**/
 	LinkedListIterator()
 		: LinkedListIterator(nullptr)
 	{}
 
-	reference operator*();	
+	/**
+		@brief Create a LinkedListIterator pointing to the provided position
+		@param current - position in the LinkedList<TValue> that the new iterator points to
+	**/
+	LinkedListIterator(LinkedList<TValue>::Node* current)
+		:current(current)
+	{}
+
+	/**
+		@brief  Allows de-referencing of the iterator to return the current value
+		@retval  - TValue reference to the value the iterator is currently pointing to
+	**/
+	reference operator*();
+
+	/**
+		@brief  Advances the iterator forward by one position
+		@retval  - iterator instance advanced forward by one poistion
+	**/
 	const LinkedListIterator<TValue>& operator++();
+
+
+	/**
+		@brief  Advances the iterator backward by one position
+		@retval  - iterator instance advanced backward by one position
+	**/
 	const LinkedListIterator<TValue>& operator--();
+
+	/**
+		@brief  Tests equality against the provided iterator
+		@param  other - iterator to test equality against
+		@retval       - false if both iterators point at the same position in the list, true otherwise
+	**/
 	bool operator==(const LinkedListIterator<TValue>& other);
+
+	/**
+		@brief  Tests inequality against the provided iterator
+		@param  other - iterator to test inequality against
+		@retval       - true if both iterators point at the same position in the list, false otherwise
+	**/
 	bool operator!=(const LinkedListIterator<TValue>& other);
 
 protected:
@@ -37,7 +81,7 @@ protected:
 template<typename TValue>
 inline LinkedListIterator<TValue>::reference LinkedListIterator<TValue>::operator*()
 {
-	return this->current->data;
+	return current->data;
 }
 
 template<typename TValue>

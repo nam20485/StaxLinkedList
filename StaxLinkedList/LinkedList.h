@@ -4,35 +4,103 @@
 #include <sstream>
 #include "LinkedListIterator.h"
 
+/**
 
+    @class   LinkedList
+    @brief   Doubley-linked list    
+    @tparam  TValue - type of list's values
+
+**/
 template<typename TValue>
 class LinkedList
 {
 public:
+	/**
+		@brief Construct an empty list
+	**/
 	LinkedList();
 	~LinkedList();
 
 	struct Node;
 
 	using iterator = LinkedListIterator<TValue>;
+	//friend class LinkedListIterator<TValue>;
 	//using const_iterator = ConstLinkedListIterator<TValue>;
 
-	// O(1)
+	/**
+		@brief  Returns size of the list
+
+		Performs in O(1) constant time
+		@retval size_t count of values in the list
+	**/
 	std::size_t size() const;
+
+	/**
+		@brief  Determines if the list is empty, i.e. it contains no values
+
+		Performs in O(1) constant time
+		@retval bool true if the list is empty, false if the list contains nodes
+	**/
 	bool empty() const;
 
-	// O(1)
+	/**
+		@brief Add an element to the front of the list
+
+		Performs in O(1) constant time
+		@param val - value to add
+	**/
 	void push_front(const TValue& val);	
+
+	/**
+		 @brief Add an element to the end of the list
+
+		 Performs in O(1) constant time
+		 @param val - value to add
+	 **/
 	void push_back(const TValue& val);
 
-	// O(1)
-	TValue front() const;	
+	/**
+		@brief  Return the value at the beginning of the list, without removing it from the list
+
+		Performs in O(1) constant time
+
+		@exception std::runtime_error if list is empty
+		@retval TValue value at the beginning of the list
+	**/
+	TValue front() const;
+
+	/**
+		@brief  Return the value at the end of the list, without removing it from the list
+
+		Performs in O(1) constant time
+		@exception std::runtime_error if list is empty
+		@retval TValue value at the end of the list
+	**/
 	TValue back() const;
 
-	// O(1)
+	/**
+		@brief Removes the value at the beginning of the list and returns it
+
+		Performs in O(1) constant time
+		@exception std::runtime_error if list is empty
+		@retval TValue value at the beginning of the list
+	**/
 	TValue pop_front();	
+
+	/**
+		@brief Removes the value at the end of the list and returns it
+
+		Performs in O(1) constant time
+		@exception std::runtime_error if list is empty
+		@retval TValue value at the end of the list
+	**/
 	TValue pop_back();	
 	
+	/**
+		@brief Removes all elements of the list
+
+		Performs in O(n) linear time, where n = the number of values in the list
+	**/
 	void clear();
 
 	iterator begin();
@@ -44,19 +112,35 @@ public:
 	//const_iterator cbegin() const;
 	//const_iterator cend() const;
 
+	/**
+		@brief Get string representation of list suitable for display
+
+		Lists all values and marks the head and tail
+		@retval  - std::string representation of list
+	**/
 	std::string toString() const;
 
-private:
+private:	
 	Node* head;
 	Node* tail;
+
 	int count;
 
+	// Add the specified value AFTER the given node
 	void addAfter(Node* node, const TValue& val);
+	// Add the specified value BEFORE the given node
 	void addBefore(Node* node, const TValue& val);
+
+	// Remove the given node (and free it's memory)
 	TValue removeNode(Node* node);	
 
 };
 
+/**
+    @struct Node
+    @brief  Represents a node in the LinkedList 
+    @tparam TValue - type of Node's values
+**/
 template<typename TValue>
 struct LinkedList<TValue>::Node
 {
@@ -72,6 +156,7 @@ struct LinkedList<TValue>::Node
 		next = nullptr;
 	}
 
+public:
 	TValue data;
 	Node* next;
 	Node* prev;
