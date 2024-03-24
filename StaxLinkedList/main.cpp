@@ -54,17 +54,17 @@ int main()
     //
     StaxAppData::LinkedList staxAppDataLinkedList;
     
-    staxAppDataLinkedList.push_back(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "<dbconnectionstring>", 1));
-    staxAppDataLinkedList.push_back(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "<dbconnectionstring>", 2));
-    staxAppDataLinkedList.push_back(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "<dbconnectionstring>", 3));
-    staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "<dbconnectionstring>", 0));    
+    staxAppDataLinkedList.push_back(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "", 1));
+    staxAppDataLinkedList.push_back(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "", 2));
+    staxAppDataLinkedList.push_back(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "", 3));
+    staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "", 0));    
 
     for (auto appData : staxAppDataLinkedList)
     {
-        appData->userId++;
-        auto& apiUrl = appData->apiUrl;
-        auto& optionsFile = appData->optionsFilename;     
+        appData->userId++;        
     }   
+
+    std::cout << staxAppDataLinkedList.toString() << std::endl;
 
     return 0;
 }
