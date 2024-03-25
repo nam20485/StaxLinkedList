@@ -50,6 +50,7 @@ public:
 		@param val - value to add
 	**/
 	void push_front(const TValue& val);	
+	void push_front(TValue&& val);
 
 	/**
 		 @brief Add an element to the end of the list
@@ -58,6 +59,7 @@ public:
 		 @param val - value to add
 	 **/
 	void push_back(const TValue& val);
+	void push_back(TValue&& val);
 
 	/**
 		@brief  Return the value at the beginning of the list, without removing it from the list
@@ -202,9 +204,22 @@ inline void LinkedList<TValue>::push_front(const TValue& val)
 }
 
 template<typename TValue>
+inline void LinkedList<TValue>::push_front(TValue&& val)
+{
+	addBefore(head, val);
+}
+
+template<typename TValue>
 inline void LinkedList<TValue>::push_back(const TValue& val)
 {		
 	addAfter(tail, val);
+}
+
+template<typename TValue>
+inline void LinkedList<TValue>::push_back(TValue&& val)
+{
+	addAfter(tail, val);
+	//push_back(val);
 }
 
 template<typename TValue>
