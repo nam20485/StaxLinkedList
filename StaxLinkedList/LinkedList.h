@@ -7,7 +7,9 @@
 /**
 
     @class   LinkedList
-    @brief   Doubley-linked list    
+    @brief   Doubley-linked list   
+
+	@details ~ Follows STL container and iterator conventions. Compatible with range-based for loop and other methods in the <algorithm> header.
     @tparam  TValue - type of list's values
 
 **/

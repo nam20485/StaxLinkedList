@@ -5,6 +5,7 @@
 #include <memory>
 #include "LinkedList.h"
 #include "StaxAppData.h"
+#include <algorithm>
 
 
 int main()
@@ -49,6 +50,30 @@ int main()
     }
     std::cout << std::endl;
 
+
+    //
+    // std::count()
+    //
+    auto c = std::count(ll.begin(), ll.end(), 0);
+
+    std::cout << "count of '0's: " << c << std::endl;
+
+    //
+    // std::for_each()
+    //
+    std::for_each(
+        ll.begin(),
+        ll.end(),
+        [](int& i)
+        {   
+            i++;
+            std::cout << i << " ";
+        });
+
+    std::cout << std::endl;
+
+    std::cout << ll.toString() << std::endl;
+
     //
     // using an example struct to represent Stax applicaiton data object
     //
@@ -64,7 +89,7 @@ int main()
         appData->userId++;        
     }   
 
-    std::cout << staxAppDataLinkedList.toString() << std::endl;
+    //std::cout << staxAppDataLinkedList.toString() << std::endl;   
 
     return 0;
 }
