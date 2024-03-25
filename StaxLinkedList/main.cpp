@@ -84,7 +84,7 @@ int main()
     staxAppDataLinkedList.push_back(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "", 3));
     staxAppDataLinkedList.push_front(std::make_shared<StaxAppData>("https://api.stax.com/api:8080", "options.json", "", 0));    
 
-    for (auto appData : staxAppDataLinkedList)
+    for (auto& appData : staxAppDataLinkedList)
     {
         appData->userId++;        
     }   
