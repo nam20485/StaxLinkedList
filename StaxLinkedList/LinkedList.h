@@ -208,7 +208,7 @@ inline void LinkedList<TValue>::push_front(const TValue& val)
 template<typename TValue>
 inline void LinkedList<TValue>::push_front(TValue&& val)
 {
-	addBefore(head, val);
+	addBefore(head, std::move(val));
 }
 
 template<typename TValue>
@@ -220,7 +220,7 @@ inline void LinkedList<TValue>::push_back(const TValue& val)
 template<typename TValue>
 inline void LinkedList<TValue>::push_back(TValue&& val)
 {
-	addAfter(tail, val);
+	addAfter(tail, std::move(val));
 	//push_back(val);
 }
 
