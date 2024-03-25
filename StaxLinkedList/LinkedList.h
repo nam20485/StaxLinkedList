@@ -151,7 +151,7 @@ private:
 template<typename TValue>
 struct LinkedList<TValue>::Node
 {
-	Node(const TValue& val)
+	explicit Node(const TValue& val)
 		: next(nullptr)
 		, prev(nullptr)
 		, data(val)

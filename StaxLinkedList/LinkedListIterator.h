@@ -80,7 +80,7 @@ protected:
 	LinkedList<TValue>::Node* current;
 
 	// Create a LinkedListIterator pointing to the provided position
-	LinkedListIterator(LinkedList<TValue>::Node* current)
+	explicit LinkedListIterator(LinkedList<TValue>::Node* current)
 		:current(current)
 	{}
 
