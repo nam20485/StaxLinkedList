@@ -107,6 +107,7 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="LinkedListIteratorTests.cpp" />
     <ClCompile Include="LinkedListMethodTests.cpp" />
     <ClCompile Include="LinkedListLogicTests.cpp" />
     <ClCompile Include="pch.cpp">
