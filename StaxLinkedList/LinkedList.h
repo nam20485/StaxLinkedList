@@ -23,6 +23,11 @@ public:
 	LinkedList();
 	~LinkedList();	
 
+	using value_type = TValue;
+	using pointer = value_type*;
+	using reference = value_type&;
+	using size_type = std::size_t;
+
 	using iterator = LinkedListIterator<TValue>;
 	friend class iterator;
 	//using const_iterator = ConstLinkedListIterator<TValue>;
@@ -33,7 +38,7 @@ public:
 		Performs in O(1) constant time
 		@retval size_t count of values in the list
 	**/
-	std::size_t size() const;
+	size_type size() const;
 
 	/**
 		@brief  Determines if the list is empty, i.e. it contains no values
