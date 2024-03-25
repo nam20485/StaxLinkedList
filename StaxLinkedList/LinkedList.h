@@ -156,12 +156,15 @@ struct LinkedList<TValue>::Node
 		next = nullptr;
 	}
 
-public:
+	std::string toString() const;
+
+private:
 	TValue data;
 	Node* next;
 	Node* prev;
 
-	std::string toString() const;
+	friend class LinkedList<TValue>;
+	friend class LinkedList<TValue>::iterator;
 };
 
 template<typename TValue>

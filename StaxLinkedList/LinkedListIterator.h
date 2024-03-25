@@ -74,7 +74,7 @@ public:
 	bool operator!=(const LinkedListIterator<TValue>& other);
 
 protected:
-	LinkedList<TValue>::Node* current;
+	LinkedList<TValue>::Node* current;	
 
 };
 
