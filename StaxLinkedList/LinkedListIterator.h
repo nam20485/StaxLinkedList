@@ -45,10 +45,22 @@ public:
 	const LinkedListIterator<TValue>& operator++();
 
 	/**
+		@brief  Advances the iterator forward by one position
+		@retval  - iterator instance advanced forward by one poistion
+	**/
+	const LinkedListIterator<TValue> operator++(int);
+
+	/**
 		@brief  Advances the iterator backward by one position
 		@retval  - iterator instance advanced backward by one position
 	**/
 	const LinkedListIterator<TValue>& operator--();
+
+	/**
+		@brief  Advances the iterator backward by one position
+		@retval  - iterator instance advanced backward by one position
+	**/
+	const LinkedListIterator<TValue> operator--(int);
 
 	/**
 		@brief  Tests equality against the provided iterator
@@ -89,10 +101,22 @@ inline const LinkedListIterator<TValue>& LinkedListIterator<TValue>::operator++(
 }
 
 template<typename TValue>
+inline const LinkedListIterator<TValue> LinkedListIterator<TValue>::operator++(int)
+{
+	return this->operator++();
+}
+
+template<typename TValue>
 inline const LinkedListIterator<TValue>& LinkedListIterator<TValue>::operator--()
 {
 	current = current->prev;
 	return *this;
+}
+
+template<typename TValue>
+inline const LinkedListIterator<TValue> LinkedListIterator<TValue>::operator--(int)
+{
+	return this->operator--();
 }
 
 template<typename TValue>

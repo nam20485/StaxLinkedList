@@ -44,7 +44,7 @@ int main()
     //
     // iterate the list values in reverse
     //
-    for (auto it = ll.rbegin(); it != ll.rend(); --it)
+    for (auto it = ll.rbegin(); it != ll.rend(); it--)
     {
         std::cout << *it << ' ';
     }
