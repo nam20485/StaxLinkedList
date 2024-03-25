@@ -30,15 +30,7 @@ public:
 	**/
 	LinkedListIterator()
 		: LinkedListIterator(nullptr)
-	{}
-
-	/**
-		@brief Create a LinkedListIterator pointing to the provided position
-		@param current - position in the LinkedList<TValue> that the new iterator points to
-	**/
-	LinkedListIterator(LinkedList<TValue>::Node* current)
-		:current(current)
-	{}
+	{}	
 
 	/**
 		@brief  Allows de-referencing of the iterator to return the current value
@@ -76,6 +68,12 @@ public:
 protected:
 	LinkedList<TValue>::Node* current;
 
+	// Create a LinkedListIterator pointing to the provided position
+	LinkedListIterator(LinkedList<TValue>::Node* current)
+		:current(current)
+	{}
+
+	friend class LinkedList<value_type>;
 };
 
 template<typename TValue>
