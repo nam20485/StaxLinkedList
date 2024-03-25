@@ -105,7 +105,8 @@ inline bool LinkedListIterator<TValue>::operator==(const LinkedListIterator<TVal
 template<typename TValue>
 inline bool LinkedListIterator<TValue>::operator!=(const LinkedListIterator<TValue>& other)
 {
-	return current != other.current;
+	//return ! (*this).operator==(other);
+	return !(*this == other);
 }
 
 //template<typename TValue>
