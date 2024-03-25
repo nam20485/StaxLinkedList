@@ -42,4 +42,7 @@
   <ItemGroup>
     <None Include="doxygen.conf" />
   </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="NatvisFile.natvis" />
+  </ItemGroup>
 </Project>
