@@ -19,12 +19,10 @@ public:
 		@brief Construct an empty list
 	**/
 	LinkedList();
-	~LinkedList();
-
-	struct Node;
+	~LinkedList();	
 
 	using iterator = LinkedListIterator<TValue>;
-	//friend class LinkedListIterator<TValue>;
+	friend class iterator;
 	//using const_iterator = ConstLinkedListIterator<TValue>;
 
 	/**
@@ -120,7 +118,10 @@ public:
 	**/
 	std::string toString() const;
 
-private:	
+private:
+	// forward declaration (implementation below)
+	struct Node;
+
 	Node* head;
 	Node* tail;
 
