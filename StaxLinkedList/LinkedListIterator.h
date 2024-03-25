@@ -22,8 +22,8 @@ public:
 	using iterator_category = std::bidirectional_iterator_tag;
 	using value_type = typename std::remove_cv<TValue>::type;
 	using difference_type = std::ptrdiff_t;
-	using pointer = TValue*;
-	using reference = TValue&;	
+	using pointer = value_type*;
+	using reference = value_type&;
 
 	/**
 		@brief Create a LinkedListIterator pointing to no position
