@@ -44,7 +44,6 @@ public:
 	**/
 	const LinkedListIterator<TValue>& operator++();
 
-
 	/**
 		@brief  Advances the iterator backward by one position
 		@retval  - iterator instance advanced backward by one position
