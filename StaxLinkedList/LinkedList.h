@@ -69,7 +69,8 @@ public:
 		@exception std::runtime_error if list is empty
 		@retval TValue value at the beginning of the list
 	**/
-	TValue front() const;
+	TValue front();
+	const TValue front() const;
 
 	/**
 		@brief  Return the value at the end of the list, without removing it from the list
@@ -78,7 +79,8 @@ public:
 		@exception std::runtime_error if list is empty
 		@retval TValue value at the end of the list
 	**/
-	TValue back() const;
+	TValue back();
+	const TValue back() const;
 
 	/**
 		@brief Removes the value at the beginning of the list and returns it
@@ -235,14 +237,28 @@ inline TValue LinkedList<TValue>::pop_back()
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::front() const
+inline TValue LinkedList<TValue>::front()
 {
 	if (head == nullptr) throw std::runtime_error("list is empty");
 	return head->data;
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::back() const
+inline const TValue LinkedList<TValue>::front() const
+{
+	if (head == nullptr) throw std::runtime_error("list is empty");
+	return head->data;
+}
+
+template<typename TValue>
+inline TValue LinkedList<TValue>::back()
+{
+	if (tail == nullptr) throw std::runtime_error("list is empty");
+	return tail->data;
+}
+
+template<typename TValue>
+inline const TValue LinkedList<TValue>::back() const
 {
 	if (tail == nullptr) throw std::runtime_error("list is empty");
 	return tail->data;
