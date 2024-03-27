@@ -141,8 +141,10 @@
     <ClCompile Include="StaxAppData.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IStlContainer.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="LinkedListIterator.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="StaxAppData.h" />
   </ItemGroup>
   <ItemGroup>
