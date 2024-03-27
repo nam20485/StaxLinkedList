@@ -28,7 +28,7 @@ public:
 	/**
 		@brief Create a LinkedListIterator pointing to no position
 	**/
-	LinkedListIterator()
+	constexpr LinkedListIterator() noexcept
 		: LinkedListIterator(nullptr)
 	{}	
 
@@ -80,8 +80,8 @@ protected:
 	LinkedList<TValue>::Node* current;
 
 	// Create a LinkedListIterator pointing to the provided position
-	explicit LinkedListIterator(LinkedList<TValue>::Node* current)
-		:current(current)
+	explicit constexpr LinkedListIterator(LinkedList<TValue>::Node* current) noexcept
+		: current(current)
 	{}
 
 	friend class LinkedList<value_type>;
