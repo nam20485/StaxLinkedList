@@ -3,6 +3,7 @@
 #include <string>
 #include <sstream>
 #include "LinkedListIterator.h"
+#include "IStlContainer.h"
 
 /**
 
@@ -14,13 +15,13 @@
 
 **/
 template<typename TValue>
-class LinkedList
+class LinkedList : IStlContainer<TValue>
 {
 public:
 	/**
 		@brief Construct an empty list
 	**/
-	LinkedList();
+	constexpr LinkedList() noexcept;
 	~LinkedList();	
 
 	using value_type = TValue;
@@ -156,7 +157,7 @@ private:
 template<typename TValue>
 struct LinkedList<TValue>::Node
 {
-	explicit Node(const TValue& val)
+	constexpr explicit Node(const TValue& val) noexcept
 		: next(nullptr)
 		, prev(nullptr)
 		, data(val)
@@ -180,7 +181,7 @@ private:
 };
 
 template<typename TValue>
-inline LinkedList<TValue>::LinkedList()
+inline constexpr LinkedList<TValue>::LinkedList() noexcept
 	: head(nullptr)
 	, tail(nullptr)
 	, count(0)
