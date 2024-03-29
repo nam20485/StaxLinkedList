@@ -4,6 +4,13 @@ template<typename TValue>
 class IStlContainer abstract
 {
 public:
+	using value_type = TValue;
+	using pointer = value_type*;
+	using reference = value_type&;
+	using const_reference = const value_type&;
+	using size_type = std::size_t;
+	using difference_type = std::ptrdiff_t;
+
 	virtual std::size_t size() const = 0;
 
 	virtual bool empty() const = 0;
