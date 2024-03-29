@@ -404,19 +404,19 @@ inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin() noexcept
 template<typename TValue>
 inline LinkedList<TValue>::iterator LinkedList<TValue>::rend() noexcept
 {
-	return iterator(head);
+	return iterator(nullptr);
 }
 
 template<typename TValue>
 inline LinkedList<TValue>::const_iterator LinkedList<TValue>::begin() const noexcept
 {
-	return iterator(nullptr);
+	return const_iterator(head);
 }
 
 template<typename TValue>
 inline LinkedList<TValue>::const_iterator LinkedList<TValue>::end() const noexcept
 {
-	return iterator(nullptr);
+	return const_iterator(nullptr);
 }
 
 template<typename TValue>
