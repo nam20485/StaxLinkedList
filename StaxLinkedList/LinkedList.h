@@ -15,7 +15,7 @@
 
 **/
 template<typename TValue>
-class LinkedList : IStlContainer<TValue>
+class LinkedList// : IStlContainer<TValue>
 {
 public:
 	/**
