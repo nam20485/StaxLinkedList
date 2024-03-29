@@ -133,19 +133,26 @@ inline bool LinkedListIterator<TValue>::operator!=(const LinkedListIterator<TVal
 	return !(*this == other);
 }
 
-//template<typename TValue>
-//class ConstLinkedListIterator : public LinkedListIterator<TValue>
-//{
-//public:
-//	ConstLinkedListIterator(LinkedList<TValue>::Node* current)
-//		: LinkedListIterator<TValue>(current)
-//	{}
-//	
-//	const LinkedListIterator<TValue>::reference operator*() const;
-//};
-//
-//template<typename TValue>
-//inline const LinkedListIterator<TValue>::reference ConstLinkedListIterator<TValue>::operator*() const
-//{
-//	return this->current->data;
-//}
+
+template<typename TValue>
+class ConstLinkedListIterator : public LinkedListIterator<TValue>
+{
+public:
+	constexpr ConstLinkedListIterator() noexcept
+		: ConstLinkedListIterator(nullptr)
+	{}	
+	
+	const LinkedListIterator<TValue>::reference operator*() const;
+
+private:
+	constexpr explicit ConstLinkedListIterator(LinkedList<TValue>::Node* current) noexcept
+		: LinkedListIterator<TValue>(current)
+	{}
+
+};
+
+template<typename TValue>
+inline const LinkedListIterator<TValue>::reference ConstLinkedListIterator<TValue>::operator*() const
+{
+	return this->current->data;
+}

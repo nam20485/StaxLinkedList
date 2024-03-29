@@ -40,7 +40,7 @@ public:
 		Performs in O(1) constant time
 		@retval size_t count of values in the list
 	**/
-	size_type size() const;
+	size_type size() const noexcept;
 
 	/**
 		@brief  Determines if the list is empty, i.e. it contains no values
@@ -48,7 +48,7 @@ public:
 		Performs in O(1) constant time
 		@retval bool true if the list is empty, false if the list contains nodes
 	**/
-	bool empty() const;
+	bool empty() const noexcept;
 
 	/**
 		@brief Add an element to the front of the list
@@ -114,17 +114,17 @@ public:
 	**/
 	void clear();
 
-	iterator begin();
-	iterator end();
+	iterator begin() noexcept;
+	iterator end() noexcept;
 
-	iterator rbegin();
-	iterator rend();
+	iterator rbegin() noexcept;
+	iterator rend() noexcept;
 
-	const_iterator begin() const;
-	const_iterator end() const;
+	const_iterator begin() const noexcept;
+	const_iterator end() const noexcept;
 
-	const_iterator cbegin() const;
-	const_iterator cend() const;
+	const_iterator cbegin() const noexcept;
+	const_iterator cend() const noexcept;
 
 	/**
 		@brief Get string representation of list suitable for display
@@ -199,13 +199,13 @@ inline LinkedList<TValue>::~LinkedList()
 }
 
 template<typename TValue>
-inline std::size_t LinkedList<TValue>::size() const
+inline std::size_t LinkedList<TValue>::size() const noexcept
 {
 	return count;
 }
 
 template<typename TValue>
-inline bool LinkedList<TValue>::empty() const
+inline bool LinkedList<TValue>::empty() const noexcept
 {
 	return head == nullptr;
 }
@@ -384,49 +384,49 @@ inline void LinkedList<TValue>::clear()
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::iterator LinkedList<TValue>::begin()
+inline LinkedList<TValue>::iterator LinkedList<TValue>::begin() noexcept
 {
 	return iterator(head);
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::iterator LinkedList<TValue>::end()
+inline LinkedList<TValue>::iterator LinkedList<TValue>::end() noexcept
 {
 	return iterator(nullptr);
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin()
+inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin() noexcept
 {
 	return iterator(tail);
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::const_iterator LinkedList<TValue>::begin() const
+inline LinkedList<TValue>::iterator LinkedList<TValue>::rend() noexcept
 {
 	return iterator(head);
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::const_iterator LinkedList<TValue>::end() const
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::begin() const noexcept
 {
 	return iterator(nullptr);
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::iterator LinkedList<TValue>::rend()
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::end() const noexcept
 {
 	return iterator(nullptr);
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cbegin() const
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cbegin() const noexcept
 {
 	return const_iterator(head);
 }
 
 template<typename TValue>
-inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cend() const
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cend() const noexcept
 {
 	return const_iterator(nullptr);
 }
