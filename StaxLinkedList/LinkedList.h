@@ -31,9 +31,10 @@ public:
 	using size_type = std::size_t;
 	using difference_type = std::ptrdiff_t;
 
-	using iterator = LinkedListIterator<TValue>;
-	friend class iterator;
+	using iterator = LinkedListIterator<TValue>;	
 	using const_iterator = ConstLinkedListIterator<TValue>;
+
+	friend class iterator;
 
 	/**
 		@brief  Returns size of the list
