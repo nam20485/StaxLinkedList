@@ -139,6 +139,7 @@ private:
 
 	int count;
 
+protected:
 	// Add the specified value AFTER the given node
 	void addAfter(Node* node, const TValue& val);
 	// Add the specified value BEFORE the given node
