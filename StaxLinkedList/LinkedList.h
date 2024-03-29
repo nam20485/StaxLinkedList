@@ -29,6 +29,7 @@ public:
 	using reference = value_type&;
 	using const_reference = const value_type&;
 	using size_type = std::size_t;
+	using difference_type = std::ptrdiff_t;
 
 	using iterator = LinkedListIterator<TValue>;
 	friend class iterator;
