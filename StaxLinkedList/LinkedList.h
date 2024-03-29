@@ -32,7 +32,7 @@ public:
 
 	using iterator = LinkedListIterator<TValue>;
 	friend class iterator;
-	//using const_iterator = ConstLinkedListIterator<TValue>;
+	using const_iterator = ConstLinkedListIterator<TValue>;
 
 	/**
 		@brief  Returns size of the list
@@ -120,8 +120,11 @@ public:
 	iterator rbegin();
 	iterator rend();
 
-	//const_iterator cbegin() const;
-	//const_iterator cend() const;
+	const_iterator begin() const;
+	const_iterator end() const;
+
+	const_iterator cbegin() const;
+	const_iterator cend() const;
 
 	/**
 		@brief Get string representation of list suitable for display
@@ -399,22 +402,34 @@ inline LinkedList<TValue>::iterator LinkedList<TValue>::rbegin()
 }
 
 template<typename TValue>
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::begin() const
+{
+	return iterator(head);
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::end() const
+{
+	return iterator(nullptr);
+}
+
+template<typename TValue>
 inline LinkedList<TValue>::iterator LinkedList<TValue>::rend()
 {
 	return iterator(nullptr);
 }
 
-//template<typename TValue>
-//inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cbegin() const
-//{
-//	return const_iterator(head);
-//}
-//
-//template<typename TValue>
-//inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cend() const
-//{
-//	return const_iterator(nullptr);
-//}
+template<typename TValue>
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cbegin() const
+{
+	return const_iterator(head);
+}
+
+template<typename TValue>
+inline LinkedList<TValue>::const_iterator LinkedList<TValue>::cend() const
+{
+	return const_iterator(nullptr);
+}
 
 template<typename TValue>
 inline std::string LinkedList<TValue>::toString() const
