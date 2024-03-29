@@ -128,7 +128,7 @@ public:
 		Lists all values and marks the head and tail
 		@retval  - std::string representation of list
 	**/
-	std::string toString() const;
+	virtual std::string toString() const;
 
 private:
 	// forward declaration (implementation below)
