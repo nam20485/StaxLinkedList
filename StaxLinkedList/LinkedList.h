@@ -27,6 +27,7 @@ public:
 	using value_type = TValue;
 	using pointer = value_type*;
 	using reference = value_type&;
+	using const_reference = const value_type&;
 	using size_type = std::size_t;
 
 	using iterator = LinkedListIterator<TValue>;
@@ -75,8 +76,8 @@ public:
 		@exception std::runtime_error if list is empty
 		@retval TValue value at the beginning of the list
 	**/
-	TValue front();
-	const TValue front() const;
+	reference front();
+	const_reference front() const;
 
 	/**
 		@brief  Return the value at the end of the list, without removing it from the list
@@ -85,8 +86,8 @@ public:
 		@exception std::runtime_error if list is empty
 		@retval TValue value at the end of the list
 	**/
-	TValue back();
-	const TValue back() const;
+	reference back();
+	const_reference back() const;
 
 	/**
 		@brief Removes the value at the beginning of the list and returns it
@@ -244,28 +245,28 @@ inline TValue LinkedList<TValue>::pop_back()
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::front()
+inline  LinkedList<TValue>::reference LinkedList<TValue>::front()
 {
 	if (head == nullptr) throw std::runtime_error("list is empty");
 	return head->data;
 }
 
 template<typename TValue>
-inline const TValue LinkedList<TValue>::front() const
+inline LinkedList<TValue>::const_reference LinkedList<TValue>::front() const
 {
 	if (head == nullptr) throw std::runtime_error("list is empty");
 	return head->data;
 }
 
 template<typename TValue>
-inline TValue LinkedList<TValue>::back()
+inline LinkedList<TValue>::reference LinkedList<TValue>::back()
 {
 	if (tail == nullptr) throw std::runtime_error("list is empty");
 	return tail->data;
 }
 
 template<typename TValue>
-inline const TValue LinkedList<TValue>::back() const
+inline LinkedList<TValue>::const_reference LinkedList<TValue>::back() const
 {
 	if (tail == nullptr) throw std::runtime_error("list is empty");
 	return tail->data;
