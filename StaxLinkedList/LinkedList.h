@@ -97,7 +97,7 @@ public:
 		@exception std::runtime_error if list is empty
 		@retval TValue value at the beginning of the list
 	**/
-	TValue pop_front();	
+	value_type pop_front();	
 
 	/**
 		@brief Removes the value at the end of the list and returns it
@@ -106,7 +106,7 @@ public:
 		@exception std::runtime_error if list is empty
 		@retval TValue value at the end of the list
 	**/
-	TValue pop_back();	
+	value_type pop_back();	
 	
 	/**
 		@brief Removes all elements of the list
